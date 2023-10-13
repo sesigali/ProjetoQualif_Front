@@ -1,0 +1,33 @@
+import React from "react";
+import Navbar from "../../../components/Navbar/navbar-home/navbar";
+import Footer from '../../../components/Footer/footer'
+import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
+import BalancoInfo from "../BalancoInfo/balancoInfo";
+
+
+export default function EmpresaInfo(formData) {
+   
+    
+    return (
+        <div className="">
+            <Navbar />
+            <Footer />
+            <div>
+                <h1>Empresa</h1>
+                <p>Razão Social: {formData.razaoSocial}</p>
+                <p>CNPJ: {formData.cnpj}</p>
+                <p>Contato da empresa: {formData.contatoDaEmpresa}</p>
+                <p>Tipo de Serviço e Número do pregão: {formData.tipoDeServico}</p>
+                <p>Valor estimado do Contrato: {formData.valorEstimadoContrato}</p>
+            </div>
+            <br></br>
+            <CertidaoInfo/>
+            <br></br>
+            <BalancoInfo/>
+        
+            
+        </div>
+
+    )
+}
+

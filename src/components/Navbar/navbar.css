@@ -1,0 +1,63 @@
+.navbar{
+    height: 60px;
+    display: flex;
+    background-color: #C0C0C0;
+}
+
+.btn-hamburguer{
+    position: fixed;
+    color: black;
+    width: 60px;
+    height: 35px;
+    margin-top: 10px;
+    cursor: pointer;
+    
+}
+
+.btn-home{
+    position: fixed;
+    /* color:red; */
+    width: 60px;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.btn-cadastro-abrir{
+    position: fixed;
+    width: 60px;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 100px;
+    cursor: pointer;
+    color: black;
+}
+
+.sidebar{
+    background-color: #696969;
+    position: fixed; 
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+}
+
+.btn-close{
+    position: fixed;
+    color: black;
+    width: 60px;
+    height: 35px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-cadastro-fechar{
+    position: fixed;
+    width: 60px;
+    height: 35px;
+    margin-top: 10px;
+    margin-left: 100px;
+    cursor: pointer;
+    color: black;
+}
