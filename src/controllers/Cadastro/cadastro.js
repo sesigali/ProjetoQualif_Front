@@ -80,13 +80,9 @@ export default function Cadastro() {
                                 required value={formData.valorEstimadoContrato}
                                 onChange={(e) => { handleFormEdit(e, 'valorEstimadoContrato') }} />
 
-                            <Link to='/empresaInfo'>
-                                <div className='button-container'>
-                                    <button className='button-submit' type='submit'>Cadastrar</button>
-                                </div>
-
-                            </Link>
-
+                            <Link to='/empresaInfo'><div className='button-container'>
+                                <button className='button-submit' type='submit'>Cadastrar</button>
+                            </div></Link>
                         </form>
                     </div>
 

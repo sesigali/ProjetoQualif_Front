@@ -17,7 +17,9 @@ export default function NavbarCadastro() {
 
             <div>
 
-                <AiFillHome className='btn-home' />
+                <Link to='home'>
+                    <AiFillHome className='btn-home' />
+                </Link>
 
             </div>
 
