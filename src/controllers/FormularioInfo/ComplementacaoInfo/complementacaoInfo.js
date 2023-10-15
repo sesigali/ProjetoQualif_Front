@@ -8,6 +8,8 @@ export default function CompromissosAssumidosInfo({
   const [dre, setDre] = useState(null);
   const [divergencia, setDivergencia] = useState(null);
   const [temJustificativa, setTemJustificativa] = useState(false);
+  const [erro, setErro] = useState(null);
+
 
   // Função para lidar com o upload da declaração
   const handleDeclaracaoUpload = (e) => {
@@ -22,8 +24,11 @@ export default function CompromissosAssumidosInfo({
   };
 
   useEffect(() => {
+    setErro(null); // Limpa o erro a cada nova avaliação
+    
     if (!receitaBruta || isNaN(receitaBruta) || !compromissosAssumidos || isNaN(compromissosAssumidos)) {
-      return;
+        setErro("Por favor, forneça valores válidos para a Receita Bruta e os Compromissos Assumidos.");
+        return;
     }
 
     // Fórmula para calcular a divergência percentual

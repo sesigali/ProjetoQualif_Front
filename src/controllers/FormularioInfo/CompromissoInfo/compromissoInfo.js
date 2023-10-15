@@ -5,16 +5,24 @@ export default function ComplementacaoInfo({
   ativoCirculante,
   passivoCirculante,
   patrimonioLiquido,
-  compromissosAssumidos,
+  //initialValue = 0,
+  //compromissosAssumidos,
 }) {
   const [capitalGiro, setCapitalGiro] = useState("");
   const [ccl, setCcl] = useState("");
   const [umDozeAvos, setUmDozeAvos] = useState("");
   const [indiceResult, setIndiceResult] = useState(null);
+  //const initialValue = 0; // Substitua 0 pelo valor inicial desejado
+  const [compromissosAssumidos, setCompromissosAssumidos] = useState(null);
+  const [erro, setErro] = useState(null);
+
 
   useEffect(() => {
+    setErro(null); // Limpa o erro a cada nova avaliação
+    
     // Verifique se valorEstimadoContrato foi fornecido e é um número válido
     if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
+      setErro("Por favor, forneça valor válido para a Valor Estimado Contrato.");
       return;
     }
     
@@ -70,7 +78,7 @@ export default function ComplementacaoInfo({
         <div>
           <h3>Compromissos Assumidos:</h3>
           <input
-            type="text"
+            type="number"
             value={compromissosAssumidos}
             onChange={(e) => setCompromissosAssumidos(e.target.value)}
           />
