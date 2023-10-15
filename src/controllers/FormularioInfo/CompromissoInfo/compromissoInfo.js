@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function ComplementacaoInfo({
+export default function CompromissosAssumidosInfo({
   valorEstimadoContrato,
   ativoCirculante,
   passivoCirculante,

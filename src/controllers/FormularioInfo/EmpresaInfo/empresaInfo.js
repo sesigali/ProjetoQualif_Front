@@ -35,7 +35,6 @@ export default function EmpresaInfo(formData) {
             <ComplementacaoInfo/>
             <br></br>
             <CompromissosAssumidosInfo/>
-        
             <br></br>
             
             

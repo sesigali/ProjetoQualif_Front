@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function CompromissosAssumidosInfo({
+export default function ComplementacaoInfo({
   compromissosAssumidos,
 }) {
   const [receitaBruta, setReceitaBruta] = useState(null);
@@ -101,9 +101,7 @@ export default function CompromissosAssumidosInfo({
             onChange={handleDreUpload}
           />
         </div>
-        <input className="" type="submit" value="Anexar" />
       </form>
     </div>
   );
-  //ver sobre botão <input className="" type="submit" value="Anexar" />
 }
