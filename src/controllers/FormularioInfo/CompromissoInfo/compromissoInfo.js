@@ -27,6 +27,7 @@ export default function ComplementacaoInfo({
     // Verifica se o CCL atende ao requisito mínimo
     const atendeRequisitos = parseFloat(capitalGiro) >= requisitoMinimo;
 
+    // Calcula o Capital de Giro
     const cclValue = parseFloat(ativoCirculante) - parseFloat(passivoCirculante);
 
     // Calcula 1/12 dos Compromissos Assumidos
