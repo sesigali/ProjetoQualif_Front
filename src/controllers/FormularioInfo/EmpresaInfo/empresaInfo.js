@@ -3,6 +3,8 @@ import Navbar from "../../../components/Navbar/navbar-home/navbar";
 import Footer from '../../../components/Footer/footer'
 import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
 import BalancoInfo from "../BalancoInfo/balancoInfo";
+//import IndiceInfo from "../IndiceInfo/indiceInfo";
+
 
 
 export default function EmpresaInfo(formData) {
@@ -24,7 +26,8 @@ export default function EmpresaInfo(formData) {
             <CertidaoInfo/>
             <br></br>
             <BalancoInfo/>
-        
+            <br></br>
+            
             
         </div>
 
