@@ -32,11 +32,6 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
       // Calcula a porcentagem em relação ao valor estimado
       const porcentagemPatrimonio = (patrimonioLiquidoNum / valorEstimadoNum) * 100;
 
-      setResultado(
-        atendeRequisitos
-          ? `A empresa atende ao requisito de Patrimônio Líquido (${porcentagemPatrimonio.toFixed(2)}% do Valor Estimado).`
-          : `A empresa não atende ao requisito de Patrimônio Líquido (${porcentagemPatrimonio.toFixed(2)}% do Valor Estimado).`
-      );
 
       // Define o resultado no índice
       setIndiceResult({
@@ -63,10 +58,12 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
           onChange={(e) => setPatrimonioLiquido(e.target.value)}
         />
       </div>
-      {resultado && (
+      {indiceResult && (
         <div>
           <p>Resultados:</p>
-          <p>Porcentagem Patrimônio/Valor Estimado: {resultado}</p>
+          <p>Requisito mínimo: {indiceResult.requisitoMinimo} = 10%</p>
+          <p>Atende Requisito: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
+          <p>Taxa: {indiceResult.porcentagemPatrimonio}</p>
         </div>
       )}
     </div>
