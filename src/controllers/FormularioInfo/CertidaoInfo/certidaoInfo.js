@@ -25,18 +25,18 @@ export default function CertidaoInfo() {
 
     return (
         <div>
-            <h1>Certidão</h1>
+            <h1 className="title-info">Certidão</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="certidaoInfo">
                     {/* validar certidão */}
-                    <h3>Certidão é ?</h3>
-                    <label>
+                    <h3 className="sub-title">Certidão é ?</h3>
+                    <label className="label-certidaoInfo">
                         <input type="radio" value="positiva"
                         checked={certidao === 'positiva'} 
                         onChange={handleCertidaoChange}/>Positiva
                     </label>
 
-                    <label>
+                    <label className="label-certidaoInfo">
                         <input type="radio" value="negativa"
                         checked={certidao === 'negativa'} 
                         onChange={handleCertidaoChange} />Negativa
@@ -46,14 +46,14 @@ export default function CertidaoInfo() {
                 {showDocRecuperacao && (
                     <div>
                     {/* Doc de recuperação judicial */}
-                    <h3>Empresa encaminhou documento de recuperação judicial?</h3>
-                    <label>
+                    <h3 className="sub-title">Empresa encaminhou documento de recuperação judicial?</h3>
+                    <label className="label-certidaoInfo">
                         <input type="radio" value="sim"
                         checked={docRecuperacao === 'sim'} 
                         onChange={handleDocRecuperacaoChange}/>Sim
                     </label>
 
-                    <label>
+                    <label className="label-certidaoInfo">
                         <input type="radio" value="não"
                         checked={docRecuperacao === 'não'} 
                         onChange={handleDocRecuperacaoChange}/>Não
@@ -62,7 +62,7 @@ export default function CertidaoInfo() {
                 </div>
                 )}      
 
-                <input className="" type="submit" value="Anexar Certidão" />
+                <input className="anexos" type="submit" value="Anexar Certidão" />
             </form>
         </div>
 

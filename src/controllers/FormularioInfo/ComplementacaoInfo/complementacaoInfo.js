@@ -61,22 +61,22 @@ export default function ComplementacaoInfo({
 
   return (
     <div>
-      <h1>Complementação da Qualificação Econômico-Financeira</h1>
+      <h1 className="title-info">Complementação da Qualificação Econômico-Financeira</h1>
       <form>
-        <div>
-          <p>Ativo Circulante:</p>
+        <div className="complInfo">
+          <label>Ativo Circulante:</label>
           <span>{ativoCirculante}</span>
         </div>
-        <div>
-          <p>Passivo Circulante:</p>
+        <div className="complInfo">
+          <label>Passivo Circulante:</label>
           <span>{passivoCirculante}</span>
         </div>
-        <div>
-          <p>Capital Circulante Líquido (CCL) ou Capital de Giro:</p>
+        <div className="complInfo">
+          <label>Capital Circulante Líquido (CCL) ou Capital de Giro:</label>
           <span>{ccl}</span>
         </div>
-        <div>
-          <p>Compromissos Assumidos:</p>
+        <div className="complInfo">
+          <label>Compromissos Assumidos:</label>
           <input
             type="number"
             value={compromissosAssumidos}

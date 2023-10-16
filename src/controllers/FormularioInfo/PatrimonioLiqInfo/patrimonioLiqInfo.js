@@ -43,13 +43,13 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
 
   return (
     <div>
-      <h1>Patrimônio Líquido</h1>
-      <div>
-        <p>Valor Estimado do Contrato:</p>
+      <h1 className="title-info">Patrimônio Líquido</h1>
+      <div className='patrimonioInfo'>
+        <label>Valor Estimado do Contrato:</label>
         <span>{valorEstimadoContrato}</span>
       </div>
       <div>
-        <p>Patrimônio Líquido:</p>
+        <label className='patrimonioInfo'>Patrimônio Líquido:</label>
         <input
           type="number"
           step="0.01"

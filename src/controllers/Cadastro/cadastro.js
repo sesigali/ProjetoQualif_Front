@@ -4,7 +4,6 @@ import Footer from '../../components/Footer/footer'
 import './cadastro.css'
 import { Link } from 'react-router-dom';
 
-
 export default function Cadastro() {
 
 
@@ -41,9 +40,8 @@ export default function Cadastro() {
 
     return (
         <div>
-            <NavbarCadastro />
+            <NavbarCadastro/>
             <Footer />
-
             <main>
                 <div className='background'>
 

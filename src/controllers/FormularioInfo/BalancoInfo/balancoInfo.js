@@ -3,34 +3,25 @@ import React, { useState } from "react";
 export default function BalancoInfo() {
 
     const [balanco, setBalanco] = useState('');
-    //const [docRecuperacao, setDocRecuperacao] = useState('');
-    //const [showDocRecuperacao , setShowDocRecuperacao] = useState(false);
-
+    
     const handleBalancoChange = (e)=>{
         setBalanco(e.target.value);
-        //setShowDocRecuperacao(e.target.value === 'positiva');
+        
     };
-
-    // const handleDocRecuperacaoChange = (e)=>{
-    //     setDocRecuperacao(e.target.value);
-    // };
 
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        // const resultadoCertidao = certidao === 'positiva' ? {docRecuperacao} : docRecuperacao;
-
-        // console.log('Resultado:', resultadoCertidao);
     }
 
     return(
         <div>
-            <h1>Balanço Patrimonial</h1>
+            <h1 className="title-info">Balanço Patrimonial</h1>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="balancoInfo">
                     {/* validar balanço */}
-                    <h3>Balanço está em conformidade com a lei?</h3>
-                    <label>
+                    <h3 className="sub-title">Balanço está em conformidade com a lei?</h3>
+                    <label className="label-balancoInfo">
                         <input type="radio" value="sim"
                         checked={balanco === 'sim'} 
                         onChange={handleBalancoChange}/>Sim
@@ -43,7 +34,7 @@ export default function BalancoInfo() {
                     </label>
                 </div>
 
-                <input className="" type="submit" value="Anexar Balanço Patrimonial" />
+                <input className="anexos" type="submit" value="Anexar Balanço Patrimonial" />
             </form>
         </div>        
 

@@ -46,25 +46,25 @@ export default function CompromissosAssumidosInfo({
 
   return (
     <div>
-      <h1>Compromissos Assumidos</h1>
+      <h1 className="title-info">Compromissos Assumidos</h1>
       <form>
-        <div>
-          <p>Compromissos Assumidos:</p>
+        <div className="compromissoInfo">
+          <label>Compromissos Assumidos:</label>
           <span>{compromissosAssumidos}</span>
         </div>
-        <div>
-          <p>Receita Bruta:</p>
+        <div className="compromissoInfo">
+          <label>Receita Bruta:</label>
           <input
             type="number"
             value={receitaBruta}
             onChange={(e) => setReceitaBruta(e.target.value)}
           />
         </div>
-        <div>
-          <p>Divergência Percentual:</p>
+        <div className="compromissoInfo">
+          <label>Divergência Percentual:</label>
           <span>{divergencia}</span>
         </div>
-        {temJustificativa && (
+        {/* {temJustificativa && (
           <div>
             <p>Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%?</p>
             <label>
@@ -86,18 +86,18 @@ export default function CompromissosAssumidosInfo({
               Não
             </label>
           </div>
-        )}
-        <br></br>
-        <div>
-          <p>Anexar Declaração de Compromissos Assumidos:</p>
-          <input
+        )} */}
+        
+        <div className="compromissoInfo">
+          <label className="anexo">Anexar Declaração de Compromissos Assumidos: </label>
+          <input className="anexos"
             type="file"
             onChange={handleDeclaracaoUpload}
           />
         </div>
-        <div>
-          <p>Anexar DRE:</p>
-          <input
+        <div className="compromissoInfo">
+          <label className="anexo">Anexar DRE: </label>
+          <input className="anexos"
             type="file"
             onChange={handleDreUpload}
           />

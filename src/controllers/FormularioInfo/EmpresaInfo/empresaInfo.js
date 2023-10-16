@@ -7,39 +7,38 @@ import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
 import IndiceInfo from "../IndiceInfo/indiceInfo";
 import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
-//import IndiceInfo from "../IndiceInfo/indiceInfo";
+import '../style/formStyle.css'
 
 export default function EmpresaInfo(formData) {
-   
-    
+
+
     return (
-        <div className="">
+        <div className="container">
             <Navbar />
             <Footer />
-            <div>
-                <h1>Empresa</h1>
-                <p>Razão Social: {formData.razaoSocial}</p>
-                <p>CNPJ: {formData.cnpj}</p>
-                <p>Contato da empresa: {formData.contatoDaEmpresa}</p>
-                <p>Tipo de Serviço e Número do pregão: {formData.tipoDeServico}</p>
-                <p>Valor estimado do Contrato: {formData.valorEstimadoContrato}</p>
+            <div className="container-form">
+            <h1 className="title-info">Empresa</h1>
+                    <p>Razão Social: {formData.razaoSocial}</p>
+                    <p>CNPJ: {formData.cnpj}</p>
+                    <p>Contato da empresa: {formData.contatoDaEmpresa}</p>
+                    <p>Tipo de Serviço e Número do pregão: {formData.tipoDeServico}</p>
+                    <p>Valor estimado do Contrato: {formData.valorEstimadoContrato}</p>
+                    <hr></hr>
+                    <CertidaoInfo />
+                    <hr></hr>
+                    <BalancoInfo />
+                    <hr></hr>
+                    <IndiceInfo />
+                    <hr></hr>
+                    <PatrimonioLiquido />
+                    <hr></hr>
+                    <ComplementacaoInfo />
+                    <hr></hr>
+                    <CompromissosAssumidosInfo />
+                    <br></br>
+                    <br></br>
+                    <br></br>                
             </div>
-            <br></br>
-            <CertidaoInfo/>
-            <br></br>
-            <BalancoInfo/>
-            <br></br>
-            <IndiceInfo/>
-            <br></br>
-            <PatrimonioLiquido/>
-            <br></br>
-            <ComplementacaoInfo/>
-            <br></br>
-            <CompromissosAssumidosInfo/>
-            <br></br>
-            <br></br>
-            <br></br>
-                        
         </div>
 
     )

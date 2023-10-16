@@ -1,0 +1,98 @@
+.container{
+    padding-top: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 249, 249);
+}
+
+.container-form{
+    background-color:#fff;
+    padding: 10px 30px 10px 30px;
+}
+
+.title-info{
+    /* display: flex;
+    justify-content: center; */
+    margin-bottom: 5px;
+    font-size: 30px;
+    color: #2a2929;
+    background: rgb(250, 251, 251);  
+}
+
+.sub-title{
+    font-size: 20px;
+    margin-bottom: 10px 0px;
+    color: rgb(89, 88, 88);
+    
+}
+
+.certidaoInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+     
+}
+
+.label-certidaoInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.balancoInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.label-balancoInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.indiceInfo{
+    /* font-size: 20px;
+    margin-bottom: 10px; */
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.patrimonioInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.complInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.compromissoInfo{
+    font-size: 20px;
+    margin: 10px 0px;
+    padding-right: 10px;
+}
+
+.anexos{
+    font-size: 15px;
+    margin-top: 7px;
+}
+
+.anexo{
+    font-weight: 700;
+}
+
+p{
+    font-size: 20px;
+    margin: 10px 0px ;
+    padding-right: 10px;
+}
+
+hr{
+    margin: 15px 0px;
+}

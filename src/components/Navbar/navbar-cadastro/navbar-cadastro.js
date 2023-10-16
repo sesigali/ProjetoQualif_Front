@@ -1,3 +1,4 @@
+import React from 'react'
 import { FaBars, FaRegMinusSquare } from 'react-icons/fa';
 import { AiFillHome } from "react-icons/ai";
 import '../../Navbar/navbar.css'

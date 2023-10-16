@@ -16,8 +16,6 @@ function App() {
         <Route exact path="/cadastro" element={<Cadastro />}/>
         <Route exact path="/empresaInfo" element={<EmpresaInfo/>}/>
         <Route exact path="/empresasLista" element={<EmpresasLista/>}/>
-        <Route exact path="/indiceInfo" element={<IndiceInfo/>}/>
-        
       </Routes>
     </BrowserRouter>
   )
