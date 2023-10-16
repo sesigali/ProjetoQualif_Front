@@ -1,101 +1,107 @@
 import React, { useState, useEffect } from "react";
 
 export default function CompromissosAssumidosInfo({
-  valorEstimadoContrato,
-  ativoCirculante,
-  passivoCirculante,
-  patrimonioLiquido,
-  //initialValue = 0,
-  //compromissosAssumidos,
+  compromissosAssumidos,
 }) {
-  const [capitalGiro, setCapitalGiro] = useState("");
-  const [ccl, setCcl] = useState("");
-  const [umDozeAvos, setUmDozeAvos] = useState("");
-  const [indiceResult, setIndiceResult] = useState(null);
-  //const initialValue = 0; // Substitua 0 pelo valor inicial desejado
-  const [compromissosAssumidos, setCompromissosAssumidos] = useState(null);
+  const [receitaBruta, setReceitaBruta] = useState(null);
+  const [declaracao, setDeclaracao] = useState(null);
+  const [dre, setDre] = useState(null);
+  const [divergencia, setDivergencia] = useState(null);
+  const [temJustificativa, setTemJustificativa] = useState(false);
   const [erro, setErro] = useState(null);
 
+
+  // Função para lidar com o upload da declaração
+  const handleDeclaracaoUpload = (e) => {
+    const file = e.target.files[0]; // Obtém o arquivo do evento de upload
+    setDeclaracao(file); // Atualiza o estado com o arquivo de declaração
+  };
+
+  // Função para lidar com o upload da DRE
+  const handleDreUpload = (e) => {
+    const file = e.target.files[0]; // Obtém o arquivo do evento de upload
+    setDre(file); // Atualiza o estado com o arquivo da DRE
+  };
 
   useEffect(() => {
     setErro(null); // Limpa o erro a cada nova avaliação
     
-    // Verifique se valorEstimadoContrato foi fornecido e é um número válido
-    if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
-      setErro("Por favor, forneça valor válido para a Valor Estimado Contrato.");
-      return;
+    if (!receitaBruta || isNaN(receitaBruta) || !compromissosAssumidos || isNaN(compromissosAssumidos)) {
+        setErro("Por favor, forneça valores válidos para a Receita Bruta e os Compromissos Assumidos.");
+        return;
     }
+
+    // Fórmula para calcular a divergência percentual
+    const divergenciaValue = ((receitaBruta - compromissosAssumidos) / compromissosAssumidos) * 100;
     
-    // Converte o valor estimado para número
-    const valorEstimadoNum = parseFloat(valorEstimadoContrato);
+    setDivergencia(divergenciaValue);
 
-    // Calcula o requisito mínimo de 16,66% do valor estimado
-    const requisitoMinimo = (16.66 / 100) * valorEstimadoNum;
-
-    // Verifica se o CCL atende ao requisito mínimo
-    const atendeRequisitos = parseFloat(capitalGiro) >= requisitoMinimo;
-
-    // Calcula o Capital de Giro
-    const cclValue = parseFloat(ativoCirculante) - parseFloat(passivoCirculante);
-
-    // Calcula 1/12 dos Compromissos Assumidos
-    const umDozeAvosIndice =  parseFloat(compromissosAssumidos) / 12;
-    
-    const umDozeAvosValue = (parseFloat(patrimonioLiquido) / parseFloat(compromissosAssumidos)) * 12;
-
-    // Verifica se ultrapassa o valor acima
-    const ultrapassaValor = umDozeAvosValue > valorEstimadoNum;
-
-    setCapitalGiro(atendeRequisitos);
-    setCcl(cclValue);
-    setUmDozeAvos(umDozeAvosIndice);
-
-    // Define o resultado
-    setIndiceResult({
-      requisitoMinimo,
-      atendeRequisitos,
-      umDozeAvosValue,
-      ultrapassaValor,
-    });
-  }, [valorEstimadoContrato, capitalGiro, ativoCirculante, passivoCirculante, patrimonioLiquido, compromissosAssumidos]);
+    // Verifique se a divergência é maior a 10%
+    if (Math.abs(divergenciaValue) > 10) {
+      setTemJustificativa(true);
+    } else {
+      setTemJustificativa(false);
+    }
+  }, [receitaBruta, compromissosAssumidos]);
 
   return (
     <div>
-      <h1>Complementação da Qualificação Econômico-Financeira</h1>
+      <h1>Compromissos Assumidos</h1>
       <form>
         <div>
-          <h3>Ativo Circulante:</h3>
-          <span>{ativoCirculante}</span>
+          <p>Compromissos Assumidos:</p>
+          <span>{compromissosAssumidos}</span>
         </div>
         <div>
-          <h3>Passivo Circulante:</h3>
-          <span>{passivoCirculante}</span>
-        </div>
-        <div>
-          <h3>Capital Circulante Líquido (CCL) ou Capital de Giro:</h3>
-          <span>{ccl}</span>
-        </div>
-        <div>
-          <h3>Compromissos Assumidos:</h3>
+          <p>Receita Bruta:</p>
           <input
             type="number"
-            value={compromissosAssumidos}
-            onChange={(e) => setCompromissosAssumidos(e.target.value)}
+            value={receitaBruta}
+            onChange={(e) => setReceitaBruta(e.target.value)}
           />
         </div>
-        {umDozeAvos && (
+        <div>
+          <p>Divergência Percentual:</p>
+          <span>{divergencia}</span>
+        </div>
+        {temJustificativa && (
           <div>
-            <h3>1/12 dos Compromissos Assumidos: {umDozeAvos}</h3>
+            <p>Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%?</p>
+            <label>
+              <input
+                type="radio"
+                value="sim"
+                checked={temJustificativa}
+                onChange={() => setTemJustificativa(true)}
+              />
+              Sim
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="não"
+                checked={!temJustificativa}
+                onChange={() => setTemJustificativa(false)}
+              />
+              Não
+            </label>
           </div>
         )}
-        {indiceResult && (
-          <div>
-            <h3>Resultados:</h3>
-            <p>Requisito mínimo: {indiceResult.requisitoMinimo}</p>
-            <p>Atende Requisitos: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
-            <p>Ultrapassa o valor acima: {indiceResult.ultrapassaValor ? "Sim" : "Não"}</p>
-          </div>
-        )}
+        <br></br>
+        <div>
+          <p>Anexar Declaração de Compromissos Assumidos:</p>
+          <input
+            type="file"
+            onChange={handleDeclaracaoUpload}
+          />
+        </div>
+        <div>
+          <p>Anexar DRE:</p>
+          <input
+            type="file"
+            onChange={handleDreUpload}
+          />
+        </div>
       </form>
     </div>
   );

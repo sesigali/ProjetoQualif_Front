@@ -17,6 +17,7 @@ function App() {
         <Route exact path="/empresaInfo" element={<EmpresaInfo/>}/>
         <Route exact path="/empresasLista" element={<EmpresasLista/>}/>
         <Route exact path="/indiceInfo" element={<IndiceInfo/>}/>
+        
       </Routes>
     </BrowserRouter>
   )

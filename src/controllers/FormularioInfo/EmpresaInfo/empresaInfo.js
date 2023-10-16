@@ -3,12 +3,11 @@ import Navbar from "../../../components/Navbar/navbar-home/navbar";
 import Footer from '../../../components/Footer/footer'
 import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
 import BalancoInfo from "../BalancoInfo/balancoInfo";
-import ComplementacaoInfo from "../CompromissoInfo/compromissoInfo";
-import CompromissosAssumidosInfo from "../ComplementacaoInfo/complementacaoInfo";
+import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
+import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
 import IndiceInfo from "../IndiceInfo/indiceInfo";
+import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
 //import IndiceInfo from "../IndiceInfo/indiceInfo";
-
-
 
 export default function EmpresaInfo(formData) {
    
@@ -32,12 +31,15 @@ export default function EmpresaInfo(formData) {
             <br></br>
             <IndiceInfo/>
             <br></br>
+            <PatrimonioLiquido/>
+            <br></br>
             <ComplementacaoInfo/>
             <br></br>
             <CompromissosAssumidosInfo/>
             <br></br>
-            
-            
+            <br></br>
+            <br></br>
+                        
         </div>
 
     )

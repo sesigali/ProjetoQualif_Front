@@ -1,106 +1,101 @@
 import React, { useState, useEffect } from "react";
 
 export default function ComplementacaoInfo({
-  compromissosAssumidos,
+  valorEstimadoContrato,
+  ativoCirculante,
+  passivoCirculante,
+  patrimonioLiquido,
+  //initialValue = 0,
+  //compromissosAssumidos,
 }) {
-  const [receitaBruta, setReceitaBruta] = useState(null);
-  const [declaracao, setDeclaracao] = useState(null);
-  const [dre, setDre] = useState(null);
-  const [divergencia, setDivergencia] = useState(null);
-  const [temJustificativa, setTemJustificativa] = useState(false);
+  const [capitalGiro, setCapitalGiro] = useState("");
+  const [ccl, setCcl] = useState("");
+  const [umDozeAvos, setUmDozeAvos] = useState("");
+  const [indiceResult, setIndiceResult] = useState(null);
+  //const initialValue = 0; // Substitua 0 pelo valor inicial desejado
+  const [compromissosAssumidos, setCompromissosAssumidos] = useState(null);
   const [erro, setErro] = useState(null);
 
-
-  // Função para lidar com o upload da declaração
-  const handleDeclaracaoUpload = (e) => {
-    const file = e.target.files[0]; // Obtém o arquivo do evento de upload
-    setDeclaracao(file); // Atualiza o estado com o arquivo de declaração
-  };
-
-  // Função para lidar com o upload da DRE
-  const handleDreUpload = (e) => {
-    const file = e.target.files[0]; // Obtém o arquivo do evento de upload
-    setDre(file); // Atualiza o estado com o arquivo da DRE
-  };
 
   useEffect(() => {
     setErro(null); // Limpa o erro a cada nova avaliação
     
-    if (!receitaBruta || isNaN(receitaBruta) || !compromissosAssumidos || isNaN(compromissosAssumidos)) {
-        setErro("Por favor, forneça valores válidos para a Receita Bruta e os Compromissos Assumidos.");
-        return;
+    // Verifique se valorEstimadoContrato foi fornecido e é um número válido
+    if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
+      setErro("Por favor, forneça valor válido para a Valor Estimado Contrato.");
+      return;
     }
-
-    // Fórmula para calcular a divergência percentual
-    const divergenciaValue = ((receitaBruta - compromissosAssumidos) / compromissosAssumidos) * 100;
     
-    setDivergencia(divergenciaValue);
+    // Converte o valor estimado para número
+    const valorEstimadoNum = parseFloat(valorEstimadoContrato);
 
-    // Verifique se a divergência é maior a 10%
-    if (Math.abs(divergenciaValue) > 10) {
-      setTemJustificativa(true);
-    } else {
-      setTemJustificativa(false);
-    }
-  }, [receitaBruta, compromissosAssumidos]);
+    // Calcula o requisito mínimo de 16,66% do valor estimado
+    const requisitoMinimo = (16.66 / 100) * valorEstimadoNum;
+
+    // Verifica se o CCL atende ao requisito mínimo
+    const atendeRequisitos = parseFloat(capitalGiro) >= requisitoMinimo;
+
+    // Calcula o Capital de Giro
+    const cclValue = parseFloat(ativoCirculante) - parseFloat(passivoCirculante);
+
+    // Calcula 1/12 dos Compromissos Assumidos
+    const umDozeAvosIndice =  parseFloat(compromissosAssumidos) / 12;
+    
+    const umDozeAvosValue = (parseFloat(patrimonioLiquido) / parseFloat(compromissosAssumidos)) * 12;
+
+    // Verifica se ultrapassa o valor acima
+    const ultrapassaValor = umDozeAvosValue > valorEstimadoNum;
+
+    setCapitalGiro(atendeRequisitos);
+    setCcl(cclValue);
+    setUmDozeAvos(umDozeAvosIndice);
+
+    // Define o resultado
+    setIndiceResult({
+      requisitoMinimo,
+      atendeRequisitos,
+      umDozeAvosValue,
+      ultrapassaValor,
+    });
+  }, [valorEstimadoContrato, capitalGiro, ativoCirculante, passivoCirculante, patrimonioLiquido, compromissosAssumidos]);
 
   return (
     <div>
-      <h1>Compromissos Assumidos</h1>
+      <h1>Complementação da Qualificação Econômico-Financeira</h1>
       <form>
         <div>
-          <h3>Compromissos Assumidos:</h3>
-          <span>{compromissosAssumidos}</span>
+          <p>Ativo Circulante:</p>
+          <span>{ativoCirculante}</span>
         </div>
         <div>
-          <h3>Receita Bruta:</h3>
+          <p>Passivo Circulante:</p>
+          <span>{passivoCirculante}</span>
+        </div>
+        <div>
+          <p>Capital Circulante Líquido (CCL) ou Capital de Giro:</p>
+          <span>{ccl}</span>
+        </div>
+        <div>
+          <p>Compromissos Assumidos:</p>
           <input
             type="number"
-            value={receitaBruta}
-            onChange={(e) => setReceitaBruta(e.target.value)}
+            value={compromissosAssumidos}
+            onChange={(e) => setCompromissosAssumidos(e.target.value)}
           />
         </div>
-        <div>
-          <h3>Divergência Percentual:</h3>
-          <span>{divergencia}</span>
-        </div>
-        {temJustificativa && (
+        {umDozeAvos && (
           <div>
-            <h3>Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%?</h3>
-            <label>
-              <input
-                type="radio"
-                value="sim"
-                checked={temJustificativa}
-                onChange={() => setTemJustificativa(true)}
-              />
-              Sim
-            </label>
-            <label>
-              <input
-                type="radio"
-                value="não"
-                checked={!temJustificativa}
-                onChange={() => setTemJustificativa(false)}
-              />
-              Não
-            </label>
+            <p>1/12 dos Compromissos Assumidos: {umDozeAvos}</p>
           </div>
         )}
-        <div>
-          <h3>Anexar Declaração de Compromissos Assumidos:</h3>
-          <input
-            type="file"
-            onChange={handleDeclaracaoUpload}
-          />
-        </div>
-        <div>
-          <h3>Anexar DRE:</h3>
-          <input
-            type="file"
-            onChange={handleDreUpload}
-          />
-        </div>
+        {indiceResult && (
+          <div>
+            <p>Resultados:</p>
+            <p>Requisito mínimo: {indiceResult.requisitoMinimo}</p>
+            <p>Atende Requisitos: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
+            <p>Ultrapassa o valor acima: {indiceResult.ultrapassaValor ? "Sim" : "Não"}</p>
+          </div>
+        )}
       </form>
     </div>
   );
