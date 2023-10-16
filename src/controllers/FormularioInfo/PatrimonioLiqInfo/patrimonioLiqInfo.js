@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 export default function PatrimonioLiquido({ valorEstimadoContrato }) {
   const [patrimonioLiquido, setPatrimonioLiquido] = useState('');
-  const [resultado, setResultado] = useState('');
   const [indiceResult, setIndiceResult] = useState(null);
   const [erro, setErro] = useState(null);
 
