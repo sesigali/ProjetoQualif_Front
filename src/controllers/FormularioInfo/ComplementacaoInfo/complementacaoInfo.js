@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+//import IndiceInfo from "../IndiceInfo/indiceInfo";
 
 export default function ComplementacaoInfo({
   valorEstimadoContrato,
@@ -65,6 +66,17 @@ export default function ComplementacaoInfo({
       <form>
         <div className="complInfo">
           <label>Ativo Circulante:</label>
+
+          
+          {/*perguntar ao Danilo como buscar o valor o 
+          ativo e passivo q será digita em "indiceInfo.js"
+          
+          As funções dos cálculos financeiros foram feitas no frontend, está certo?
+
+          Documentação react
+          control form 
+          */}
+
           <span>{ativoCirculante}</span>
         </div>
         <div className="complInfo">

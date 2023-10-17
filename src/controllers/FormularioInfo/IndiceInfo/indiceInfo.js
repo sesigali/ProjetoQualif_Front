@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 
 export default function IndiceInfo() {
 
@@ -15,9 +16,7 @@ export default function IndiceInfo() {
     setLiquidezGeral(((ativoCirculante + ativoRealizavelLongoPrazo) / (passivoCirculante + passivoNaoCirculante)).toFixed(2));
     setSolvenciaGeral(((ativoTotal) / (passivoCirculante + passivoNaoCirculante)).toFixed(2));
     setLiquidezCorrente(((ativoCirculante) / (passivoCirculante)).toFixed(2));
-
   };
-
 
   return (
     <div className="">
@@ -30,6 +29,7 @@ export default function IndiceInfo() {
             value={ativoCirculante}
             onChange={(e) => setAtivoCirculante(parseFloat(e.target.value))}
           />
+          
         </div>
         <div  className="indiceInfo">
           <label >Ativo Realizável a Longo Prazo:</label>
