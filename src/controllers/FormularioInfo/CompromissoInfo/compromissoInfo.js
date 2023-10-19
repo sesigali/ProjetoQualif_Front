@@ -47,6 +47,9 @@ export default function CompromissosAssumidosInfo({
   return (
     <div>
       <h1 className="title-info">Compromissos Assumidos</h1>
+
+      <p>Caso a diferença entre a receita bruta discriminada na Demonstração do Resultado do <br></br> Exercício (DRE) e a declaração apresentada seja maior que 10% (dez por cento) positivo <br></br> ou negativo em relação à receita bruta, o licitante deverá apresentar justificativas.</p>
+      
       <form>
         <div className="compromissoInfo">
           <label>Compromissos Assumidos:</label>
@@ -64,7 +67,8 @@ export default function CompromissosAssumidosInfo({
           <label>Divergência Percentual:</label>
           <span>{divergencia}</span>
         </div>
-        {/* {temJustificativa && (
+
+        {temJustificativa && (
           <div>
             <p>Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%?</p>
             <label>
@@ -86,7 +90,7 @@ export default function CompromissosAssumidosInfo({
               Não
             </label>
           </div>
-        )} */}
+        )}
         
         <div className="compromissoInfo">
           <label className="anexo">Anexar Declaração de Compromissos Assumidos: </label>

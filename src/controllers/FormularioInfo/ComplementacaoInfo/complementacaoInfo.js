@@ -64,10 +64,11 @@ export default function ComplementacaoInfo({
     <div>
       <h1 className="title-info">Complementação da Qualificação Econômico-Financeira</h1>
       <form>
+        <p>Comprovação de possuir Capital Circulante Líquido (CCL) ou Capital de Giro <br></br>(Ativo Circulante – Passivo Circulante) de, no mínimo, 16,66% (dezesseis inteiros <br></br> e sessenta e seis centésimos por cento) do valor estimado.</p>
+        
+          {/* trazer valor do indiceInfo*/}
         <div className="complInfo">
-          <label>Ativo Circulante:</label>
-
-          
+          <label>Ativo Circulante:{ativoCirculante}</label>
           {/*perguntar ao Danilo como buscar o valor o 
           ativo e passivo q será digita em "indiceInfo.js"
           
@@ -75,18 +76,18 @@ export default function ComplementacaoInfo({
 
           Documentação react
           control form 
-          */}
+          */}    
 
-          <span>{ativoCirculante}</span>
+          {/* trazer valor do indiceInfo*/}
         </div>
         <div className="complInfo">
-          <label>Passivo Circulante:</label>
-          <span>{passivoCirculante}</span>
+          <label>Passivo Circulante:{passivoCirculante}</label>
         </div>
+          {/* digitar valor */}
         <div className="complInfo">
-          <label>Capital Circulante Líquido (CCL) ou Capital de Giro:</label>
-          <span>{ccl}</span>
+          <label>Capital Circulante Líquido (CCL) ou Capital de Giro:{ccl}</label>
         </div>
+          {/* digitar valor */}
         <div className="complInfo">
           <label>Compromissos Assumidos:</label>
           <input
@@ -94,6 +95,20 @@ export default function ComplementacaoInfo({
             value={compromissosAssumidos}
             onChange={(e) => setCompromissosAssumidos(e.target.value)}
           />
+
+            {/* passar a função para retornar o calculo */}
+          <div className="complInfo">
+            <label>Total de Capital de Giro estimado sobre o valor da contratação: "retorna o valor %"</label>
+          </div>
+
+          <div>
+            <p>A Declaração de Compromissos Assumidos deve informar que 1/12 (um doze avos) <br></br> dos contratos firmados pela licitante não é superior ao Patrimônio Líquido da licitante </p>
+          </div>
+
+          
+          <p>"***RETORNAR 1/12***"</p>
+          <p>"***RETORNAR SE ULTRAPASSA O VALOR***"</p>
+
         </div>
         {umDozeAvos && (
           <div>

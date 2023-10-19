@@ -5,6 +5,7 @@ export default function CertidaoInfo() {
     const [certidao, setCertidao] = useState('');
     const [docRecuperacao, setDocRecuperacao] = useState('');
     const [showDocRecuperacao , setShowDocRecuperacao] = useState(false);
+    const [anexo, setAnexo] = useState(null);
 
     const handleCertidaoChange = (e)=>{
         setCertidao(e.target.value);
@@ -13,6 +14,11 @@ export default function CertidaoInfo() {
 
     const handleDocRecuperacaoChange = (e)=>{
         setDocRecuperacao(e.target.value);
+    };
+
+    const handleAnexoChange = (e) => {
+        const file = e.target.files[0];
+        setAnexo(file);
     };
 
     const handleSubmit = (e) =>{
@@ -60,9 +66,13 @@ export default function CertidaoInfo() {
                     </label>
 
                 </div>
-                )}      
+                )}
 
-                <input className="anexos" type="submit" value="Anexar Certidão" />
+                <div className="label-certidaoInfo"><label className="anexo">Anexar Documentos:</label>
+                <input className="anexos" 
+                type="file" 
+                onChange={handleAnexoChange}/>
+                </div>                   
             </form>
         </div>
 

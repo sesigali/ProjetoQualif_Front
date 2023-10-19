@@ -3,10 +3,16 @@ import React, { useState } from "react";
 export default function BalancoInfo() {
 
     const [balanco, setBalanco] = useState('');
+    const [anexo, setAnexo] = useState(null);
     
     const handleBalancoChange = (e)=>{
         setBalanco(e.target.value);
         
+    };
+
+    const handleAnexoChange = (e) => {
+        const file = e.target.files[0];
+        setAnexo(file);
     };
 
     const handleSubmit = (e) =>{
@@ -34,7 +40,10 @@ export default function BalancoInfo() {
                     </label>
                 </div>
 
-                <input className="anexos" type="submit" value="Anexar Balanço Patrimonial" />
+                <div className="label-balancoInfo">
+                    <label className="anexo">Anexar Balanço Patrimonial: </label><input className="anexos" type="file"
+                    onChange={handleAnexoChange} />
+                </div>                
             </form>
         </div>        
 
