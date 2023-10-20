@@ -12,15 +12,16 @@ export default function ComplementacaoInfo({
   const [capitalGiro, setCapitalGiro] = useState("");
   const [ccl, setCcl] = useState("");
   const [umDozeAvos, setUmDozeAvos] = useState("");
-  const [indiceResult, setIndiceResult] = useState(null);
+  const [indiceResult, setIndiceResult] = useState("");
   //const initialValue = 0; // Substitua 0 pelo valor inicial desejado
-  const [compromissosAssumidos, setCompromissosAssumidos] = useState(null);
+  const [compromissosAssumidos, setCompromissosAssumidos] = useState("");
   const [erro, setErro] = useState(null);
 
 
   useEffect(() => {
     setErro(null); // Limpa o erro a cada nova avaliação
-    
+    //setErro(erro); 
+
     // Verifique se valorEstimadoContrato foi fornecido e é um número válido
     if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
       setErro("Por favor, forneça valor válido para a Valor Estimado Contrato.");
@@ -69,7 +70,7 @@ export default function ComplementacaoInfo({
           {/* trazer valor do indiceInfo*/}
         <div className="complInfo">
           <label>Ativo Circulante:{ativoCirculante}</label>
-          {/*perguntar ao Danilo como buscar o valor o 
+{/*perguntar ao Danilo como buscar o valor o 
           ativo e passivo q será digita em "indiceInfo.js"
           
           As funções dos cálculos financeiros foram feitas no frontend, está certo?
