@@ -4,7 +4,6 @@ import Home from './controllers/Home/home';
 import Cadastro from "./controllers/Cadastro/cadastro";
 import EmpresaInfo from "./controllers/FormularioInfo/EmpresaInfo/empresaInfo";
 import EmpresasLista from "./controllers/EmpresasLista/empresasLista";
-//import IndiceInfo from "./controllers/FormularioInfo/IndiceInfo/indiceInfo";
 
 
 function App() {
