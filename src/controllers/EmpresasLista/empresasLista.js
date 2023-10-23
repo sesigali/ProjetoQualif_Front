@@ -15,8 +15,8 @@ export default function EmpresasLista(empresas) {
 
             <form className="container-empresasLista">
                 <div className="subtitulo">
-                    <h3 className="" >Empresas</h3>
-                    <h3 >Tipo de Serviço</h3>
+                    <h3 className="" >Empresas: </h3>
+                    <h3 >Pregão / Tipo de Serviço: </h3>
                     {/* <h3></h3> */}
                     <button>
                         <FaTrash className="btn-delete" />
