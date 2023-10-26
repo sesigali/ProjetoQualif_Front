@@ -3,13 +3,9 @@
     padding: 10px;
     box-shadow: 0px 0px 5px #ccc;
     border-radius: 5px;
-    max-width: 400px;
-    margin: 20px auto;
-    word-break: break-all;
-    /* display: flex; */
-    
-
-    
+    max-width: 450px;
+    margin: 10px auto;
+    word-break: break-all;   
 }
 
 .sidebar{
@@ -18,25 +14,29 @@
     height: 100%;
     top: 0px;
     left: 0px;
-    width: 400px;
+    width: 450px;
     padding-top: 60px;
 }
 
+.button-delete{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.btn-delete{
+    width: 20px;
+    height: 20px;
+}
+
 .subtitulo{
-    /* display: flex; */
     border-bottom: inset;
     padding-bottom: 3px; 
     color: white;
     
 }
 
-h3{
-    margin-right: 50px;
+.sub{
+    margin: 5px;
 }
 
 
-.btn-delete{
-    width: 30px;
-    height: 20px;
-
-}

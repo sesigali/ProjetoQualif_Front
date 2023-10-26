@@ -8,23 +8,21 @@ export default function NavbarCadastro() {
 
     return (
 
-        <div>
+        <div className='navbar'>
 
             <div>
-                <Link to='empresasLista'>
+                <Link to='/empresasLista'>
                     <FaBars className='btn-hamburguer' />
                 </Link>
             </div>
 
             <div>
-
-                <Link to='home'>
+                <Link to='/'>
                     <AiFillHome className='btn-home' />
                 </Link>
-
             </div>
 
-            <div className='navbar'>
+            <div>
                 <Link to='/'>
                     < FaRegMinusSquare className='btn-cadastro-fechar' />
                 </Link>

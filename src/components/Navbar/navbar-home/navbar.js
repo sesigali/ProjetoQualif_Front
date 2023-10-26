@@ -11,17 +11,20 @@ export default function Navbar() {
 
         <div className='navbar'>
             <div>
-                <Link to='empresasLista'>
+                <Link to='/empresasLista'>
                     <FaBars className='btn-hamburguer' />
                 </Link>
             </div>
 
             <div>
-                <AiFillHome className='btn-home' />
+                <Link to='/'>
+                    <AiFillHome className='btn-home' />
+                </Link>
+
             </div>
 
             <div>
-                <Link to='cadastro'>
+                <Link to='/cadastro'>
                     <FaRegPlusSquare className='btn-cadastro-abrir' />
                 </Link>
             </div>
@@ -30,3 +33,4 @@ export default function Navbar() {
     )
 
 }
+
