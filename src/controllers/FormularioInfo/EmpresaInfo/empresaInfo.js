@@ -61,4 +61,3 @@ export default function EmpresaInfo(formData) {
     )
 }
 
-<Link to='/'></Link>
