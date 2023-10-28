@@ -1,15 +1,31 @@
-//import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavbarEmpresasLista from "../../components/Navbar/navbar-empresasLista/navbar-empresasLista";
 import Footer from '../../components/Footer/footer'
 import '../EmpresasLista/empresasLista.css'
 import { FaTrash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 
-//passando a propriedade (empresas) que virá do banco de dados
-// ===Usando o useEffect para contruir o código trazer do BD===
-
+//passando a propriedade (empresas) que virão do banco de dados
 
 export default function EmpresasLista() {
+    const [empresas, setEmpresas] = useState([]);
+
+    useEffect(()=>{
+        async function fetchData() {
+            try {
+                const response = await fetch('/api/listartodas'); //necessário trocar 'api' pelo endereço, como ...`http://localhost:porta`.
+                if(response.ok){
+                    const data = await response.json();
+                    setEmpresas(data);
+                }else{
+                    console.error('Erro ao buscar dados das empresas');
+                }
+            }catch(error){
+                console.error('Erro ao buscar dados das empresas', error);
+            }
+        }
+        fetchData();
+    },[]);
 
 
     return (
@@ -18,7 +34,7 @@ export default function EmpresasLista() {
             <Footer />
 
 
-            {/* ***Empresas que virão do banco de dados*** */}
+            {/* ***TROCAR PELO MÓDELO ABAIXO*** */}
             <form className="container-empresasLista">
 
                 <div className="button-delete">
@@ -37,7 +53,7 @@ export default function EmpresasLista() {
                 </div>
                 
 
-                {/* ====POSSO COLOCAR O CÓDIGO BD AQUI PARA TESTA==== */}
+                {/* ====POSSO COLOCAR O CÓDIGO BD AQUI PARA TESTAR==== */}
 
             </form>
 
@@ -49,7 +65,7 @@ export default function EmpresasLista() {
 
 {/***Isso renderizará a lista de empresas com os dados buscados do banco de dados.***/}
 
-// {empresa.map((idEmpresa)=> (
+// {empresas.map((idEmpresa)=> (
 //     <form key={empresa.idEmpresa} className="container-empresasLista">
 
 //                 <div className="button-delete">
