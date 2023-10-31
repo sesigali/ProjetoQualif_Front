@@ -1,0 +1,25 @@
+/* home.css */
+.content {
+    display: flex; 
+    margin-top: 2cm; 
+    align-items: center;
+    padding-left: 1.2cm; 
+}
+
+.image {
+    width: 80%;
+    margin-bottom: 1rem; 
+}
+
+.text {
+    flex: 1; 
+    padding: 20px; 
+    text-align: justify;
+}
+
+.video {
+    flex: 1; 
+    padding: 20px; 
+    justify-content: center;
+    align-items: center;
+}

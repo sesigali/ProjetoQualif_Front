@@ -62,7 +62,7 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
           <p>Resultados:</p>
           <p>Requisito mínimo: {indiceResult.requisitoMinimo} = 10%</p>
           <p>Atende Requisito: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
-          <p>Taxa: {indiceResult.porcentagemPatrimonio}</p>
+          <p>Taxa: {indiceResult.porcentagemPatrimonio} %</p>
         </div>
       )}
     </div>
