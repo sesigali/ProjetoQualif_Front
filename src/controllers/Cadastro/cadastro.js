@@ -199,7 +199,7 @@ export default function Cadastro() {
 
     return (
         <div>
-            <NavbarCadastro/>
+            <NavbarCadastro />
             <Footer />
             <main>
                 <div className='background'>
@@ -227,7 +227,7 @@ export default function Cadastro() {
 
                             <input className='input'
                                 type="text"
-                                placeholder="Tipo de serviço - Número do pregão"
+                                placeholder="Pregão / Tipo de serviço"
                                 required value={formData.tipoDeServico}
                                 onChange={(e) => { handleFormEdit(e, 'tipoDeServico') }} />
 
@@ -237,11 +237,21 @@ export default function Cadastro() {
                                 required value={formData.valorEstimadoContrato}
                                 onChange={(e) => { handleFormEdit(e, 'valorEstimadoContrato') }} />
 
-                            <Link to='/empresaInfo'><div className='button-container'>
-                                <button className='button-submit' type='submit' onClick={handleCadastroEmpresa}>
+
+                            <div className='button-container'>
+
+                                <Link to='/empresaInfo'>
+                                    <button className='button-submit' type='submit' onClick={handleCadastroEmpresa}>
                                     Cadastrar
                                 </button>
-                            </div></Link>
+                                </Link>
+
+                                <Link to='/'>
+                                    <button className='button-cancelar'>Cancelar</button>
+                                </Link>
+
+                            </div>
+
                         </form>
                     </div>
 

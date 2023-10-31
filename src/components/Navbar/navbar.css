@@ -38,15 +38,6 @@
     color: black;
 }
 
-.sidebar {
-    background-color: #696969;
-    position: fixed;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    width: 400px;
-}
-
 .btn-close {
     position: fixed;
     color: black;

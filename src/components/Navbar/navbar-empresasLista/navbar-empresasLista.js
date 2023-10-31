@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 export default function NavbarEmpresasLista() {
 
     return (
-        <div className='navbar sidebar'>
+        <div className='navbar'>
             <Link to='/'>
                 < FaTimes className='btn-close' />
             </Link>
