@@ -13,7 +13,7 @@ export default function EmpresasLista() {
     useEffect(()=>{
         async function fetchData() {
             try {
-                const response = await fetch('/api/listartodas'); //necessário trocar 'api' pelo endereço, como ...`http://localhost:porta`.
+                const response = await fetch('http://localhost:8888/empresa/listartodas');
                 if(response.ok){
                     const data = await response.json();
                     setEmpresas(data);

@@ -70,7 +70,7 @@ export default function ComplementacaoInfo({
           {/* trazer valor do indiceInfo*/}
         <div className="complInfo">
           <label>Ativo Circulante:{ativoCirculante}</label>
-{/*perguntar ao Danilo como buscar o valor o 
+          {/*perguntar ao Danilo como buscar o valor o 
           ativo e passivo q será digita em "indiceInfo.js"
           
           As funções dos cálculos financeiros foram feitas no frontend, está certo?

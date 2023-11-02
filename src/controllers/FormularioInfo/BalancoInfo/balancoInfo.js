@@ -1,17 +1,14 @@
 import React, { useState } from "react";
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
 
 export default function BalancoInfo() {
 
-    const [balancoConfLei, setBalanco] = useState('');
+    const [balancoConfLei, setBalancoConfLei] = useState('');
     const [anexo, setAnexo] = useState(null);
-    const location = useLocation();
-    const idEmpresa = location.state.idEmpresa;
+    const [showAnexo, setShowAnexo] = useState(false);
 
-    const handleBalancoChange = (e)=>{
-        setBalanco(e.target.value);
-        
+    const handleBalancoChange = (e) => {
+        setBalancoConfLei(e.target.value);
+        setShowAnexo(e.target.value === 'sim');
     };
 
     const handleAnexoChange = (e) => {
@@ -19,53 +16,47 @@ export default function BalancoInfo() {
         setAnexo(file);
     };
 
-    const handleSubmit = (e) =>{
-        //e.preventDefault();
-        const formData = new FormData();
-        formData.append('balancoConfLei', balancoConfLei);
-        formData.append('anexo', anexo);
-        formData.append('idEmpresa', idEmpresa);
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-        axios.post('/balanco/adicionar', formData)
-            .then((response) => {
-                if (response.status === 200) {
-                    // Exibir uma mensagem de sucesso
-                    alert('Balanço cadastrado com sucesso!');
-                } else {
-                    // Exibir uma mensagem de erro
-                    alert('Ocorreu um erro ao cadastrar o balanço.');
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        const resultadoBalanco = {
+            balancoConfLei,
+            anexo
+        };
+
+        console.log('Resultado:', resultadoBalanco);
     }
 
-    return(
+    return (
         <div>
             <h1 className="title-info">Balanço Patrimonial</h1>
             <form onSubmit={handleSubmit}>
                 <div className="balancoInfo">
-                    {/* validar balanço */}
+                    {/* Validar balanço */}
                     <h3 className="sub-title">Balanço está em conformidade com a lei?</h3>
                     <label className="label-balancoInfo">
                         <input type="radio" value="sim"
-                        checked={balancoConfLei === 'sim'} 
-                        onChange={handleBalancoChange}/>Sim
+                            checked={balancoConfLei === 'sim'}
+                            onChange={handleBalancoChange} />Sim
                     </label>
 
-                    <label>
+                    <label className="label-balancoInfo">
                         <input type="radio" value="não"
-                        checked={balancoConfLei === 'não'} 
-                        onChange={handleBalancoChange} />Não
+                            checked={balancoConfLei === 'não'}
+                            onChange={handleBalancoChange} />Não
                     </label>
                 </div>
 
-                <div className="label-balancoInfo">
-                    <label className="anexo">Anexar Balanço Patrimonial: </label>
-                    <input className="anexos" type="file" onChange={handleAnexoChange} />
-                </div>                
-                {/*<button type="submit">Enviar</button>*/}
+                {showAnexo && (
+                    <div>
+                        {/* Anexar Balanço Patrimonial */}
+                        <h3 className="sub-title">Anexar Balanço Patrimonial:</h3>
+                        <label className="label-balancoInfo">
+                            <input type="file"
+                                onChange={handleAnexoChange} />
+                        </label>
+                    </div>
+                )}
             </form>
         </div>
     )

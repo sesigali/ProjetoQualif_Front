@@ -1,8 +1,8 @@
 import React from "react";
 import Navbar from "../../components/Navbar/navbar-home/navbar";
 import Footer from "../../components/Footer/footer";
-import './home.css'; // Importe um arquivo CSS para estilização
-import Image from "./Imagem.png"; // Substitua "imagem.jpg" pelo nome da sua imagem
+import './home.css'; 
+import Image from "./Imagem.png"; 
 
 export default function Home() {
     return (
@@ -23,12 +23,11 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="video">
-                    {/* Incorporar seu vídeo aqui, por exemplo, usando um elemento iframe */}
                     <iframe
                         width="560"
                         height="315"
-                        src="https://www.youtube.com/embed/seu_video_id"
-                        title="Seu Vídeo"
+                        src="https://www.youtube.com/embed/video_id"
+                        title="Vídeo Qualif"
                     />
                 </div>
             </div>

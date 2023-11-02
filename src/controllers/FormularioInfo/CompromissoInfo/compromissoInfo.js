@@ -19,7 +19,7 @@ export default function CompromissosAssumidosInfo({
 
   // Função para lidar com o upload da DRE
   const handleDreUpload = (e) => {
-    const file = e.target.files[0]; // Obtém o arquivo do evento de upload
+    const file = e.target.files[0];
     setDre(file); // Atualiza o estado com o arquivo da DRE
   };
 
