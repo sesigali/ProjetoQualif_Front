@@ -77,7 +77,7 @@ export default function EmpresasLista() {
 //                 <div className="subtitulo">
 
 //                     <Link to={`/relatorioInfo/${empresa.idEmpresa}`}>
-//                         <h3 className="sub" >Empresa:{empresa.idEmpresa} </h3>
+//                         <h3 className="sub" >Empresa:{empresa.razaoSocial} </h3>
 //                     </Link>
 //                     <h3 className="sub">Pregão / Tipo de Serviço:{empresa.tipoServico} </h3>
                     
