@@ -1,8 +1,9 @@
 import React from "react";
-import Navbar from "../../components/Navbar/navbar-home/navbar";
+import Navbar from "../../components/Navbar/navbar/navbar";
 import Footer from "../../components/Footer/footer";
 import './home.css'; 
 import Image from "./Imagem.png"; 
+
 
 export default function Home() {
     return (

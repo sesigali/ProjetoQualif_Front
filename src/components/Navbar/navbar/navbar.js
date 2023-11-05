@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
-import { FaBars, FaTimes, FaRegMinusSquare } from 'react-icons/fa';
+import { Link } from 'react-router-dom'
+import { FaBars, FaTimes, FaRegPlusSquare } from 'react-icons/fa';
 import { AiFillHome } from "react-icons/ai";
 import '../../Navbar/navbar.css'
-import { Link } from 'react-router-dom';
 import EmpresasLista from '../../../controllers/EmpresasLista/empresasLista';
 
-export default function NavbarCadastro() {
+export default function Navbar() {
 
     const [hamburguerIcon, setHamburguerIcon] = useState(true);
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
 
     const toggleSidebar = () => {
         setHamburguerIcon(!hamburguerIcon);
@@ -19,7 +20,6 @@ export default function NavbarCadastro() {
     return (
 
         <div className='navbar'>
-
             <div>
                 {hamburguerIcon ? (
                     <FaBars className='btn-hamburguer' onClick={toggleSidebar} />
@@ -40,11 +40,12 @@ export default function NavbarCadastro() {
                 <Link to='/'>
                     <AiFillHome className='btn-home' />
                 </Link>
+
             </div>
 
             <div>
-                <Link to='/'>
-                    < FaRegMinusSquare className='btn-cadastro-fechar' />
+                <Link to='/cadastro'>
+                    <FaRegPlusSquare className='btn-cadastro-abrir' />
                 </Link>
             </div>
 
@@ -53,3 +54,4 @@ export default function NavbarCadastro() {
     )
 
 }
+

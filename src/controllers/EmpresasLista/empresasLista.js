@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import NavbarEmpresasLista from "../../components/Navbar/navbar-empresasLista/navbar-empresasLista";
-import Footer from '../../components/Footer/footer'
 import '../EmpresasLista/empresasLista.css'
 import { FaTrash } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -29,11 +27,8 @@ export default function EmpresasLista() {
 
 
     return (
-        <div className="sidebar">
-            <NavbarEmpresasLista />
-            <Footer />
-
-
+        <div className="">
+            
             {/* ***TROCAR PELO MÓDELO ABAIXO*** */}
             <form className="container-empresasLista">
 
@@ -63,7 +58,7 @@ export default function EmpresasLista() {
 }
 
 
-{/***Isso renderizará a lista de empresas com os dados buscados do banco de dados.***/}
+/***Isso renderizará a lista de empresas com os dados buscados do banco de dados.***/
 
 // {empresas.map((idEmpresa)=> (
 //     <form key={empresa.idEmpresa} className="container-empresasLista">
@@ -93,8 +88,8 @@ export default function EmpresasLista() {
 
 // ====SEGUNDO EXEMPLO====
 
-{/* ***Empresas que virão do banco de dados*** */}
-                {/* <form>
+/* ***Empresas que virão do banco de dados*** */
+                /* <form>
                 {empresas.map((item, i) => (
                     <div key={i} className="subtitulo">
                         <h3>{item.empresa}</h3>
@@ -106,4 +101,4 @@ export default function EmpresasLista() {
                     </div>
 
                 ))}
-            </form> */}
+            </form> */

@@ -8,16 +8,6 @@
     word-break: break-all;   
 }
 
-.sidebar{
-    background-color: #d3edee;
-    position: fixed; 
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    width: 450px;
-    padding-top: 60px;
-}
-
 .button-delete{
     display:flex;
     justify-content: flex-end;
@@ -38,5 +28,4 @@
 .sub{
     margin: 5px;
 }
-
 

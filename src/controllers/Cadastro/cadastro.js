@@ -3,6 +3,7 @@ import NavbarCadastro from '../../components/Navbar/navbar-cadastro/navbar-cadas
 import Footer from '../../components/Footer/footer';
 import './cadastro.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 //import swal from 'sweetalert2';
 
 export default function Cadastro() {
@@ -101,6 +102,11 @@ export default function Cadastro() {
                                 <button className='button-submit' type='submit'>
                                     Cadastrar
                                 </button>
+
+                                <Link to='/'>
+                                    <button className='button-cancelar'>Cancelar</button>
+                                </Link>
+
                             </div>
                         </form>
                     </div>
@@ -280,117 +286,117 @@ export default function Cadastro() {
 
     }; */
 
-    /*------
-    function RequisicaoCadastroEmpresa(empresa) {
-        axios.post('/empresa/adicionar', empresa) // Substitua 'sua-rota-de-cadastro' pela rota apropriada
-            .then((response) => {
-                if (response.status === 200) {
-                    swal({ title: "Empresa cadastrada!", icon: "success" }).then(() => {
-                        // Você pode redirecionar para outra página ou fazer o que for necessário aqui
-                    });
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }
-
-    function handleCadastroEmpresa(event) {
-        event.preventDefault(); // Evita que a página seja recarregada
-    
-        const empresa = {
-            razaoSocial: formData.razaoSocial,
-            cnpj: formData.cnpj,
-            contatoDaEmpresa: formData.contatoDaEmpresa,
-            tipoDeServico: formData.tipoDeServico,
-            valorEstimadoContrato: formData.valorEstimadoContrato,
-        };
-
-        axios.post('/empresa/adicionar', empresa)
+/*------
+function RequisicaoCadastroEmpresa(empresa) {
+    axios.post('/empresa/adicionar', empresa) // Substitua 'sua-rota-de-cadastro' pela rota apropriada
         .then((response) => {
             if (response.status === 200) {
-                // Empresa cadastrada com sucesso, agora você pode obter o idEmpresa da resposta.
-                const idEmpresa = response.data.idEmpresa;
-
-                // Redirecione para a página de BalancoInfo passando o idEmpresa como uma prop
-                history.push({
-                    pathname: '/empresaInfo',
-                    state: { idEmpresa: idEmpresa }
+                swal({ title: "Empresa cadastrada!", icon: "success" }).then(() => {
+                    // Você pode redirecionar para outra página ou fazer o que for necessário aqui
                 });
-            } else {
-                alert('Ocorreu um erro ao cadastrar a empresa.');
             }
         })
         .catch((error) => {
             console.log(error);
         });
-    
-        //RequisicaoCadastroEmpresa(empresa);
-    }
-    //------    
+}
+
+function handleCadastroEmpresa(event) {
+    event.preventDefault(); // Evita que a página seja recarregada
+ 
+    const empresa = {
+        razaoSocial: formData.razaoSocial,
+        cnpj: formData.cnpj,
+        contatoDaEmpresa: formData.contatoDaEmpresa,
+        tipoDeServico: formData.tipoDeServico,
+        valorEstimadoContrato: formData.valorEstimadoContrato,
+    };
+
+    axios.post('/empresa/adicionar', empresa)
+    .then((response) => {
+        if (response.status === 200) {
+            // Empresa cadastrada com sucesso, agora você pode obter o idEmpresa da resposta.
+            const idEmpresa = response.data.idEmpresa;
+
+            // Redirecione para a página de BalancoInfo passando o idEmpresa como uma prop
+            history.push({
+                pathname: '/empresaInfo',
+                state: { idEmpresa: idEmpresa }
+            });
+        } else {
+            alert('Ocorreu um erro ao cadastrar a empresa.');
+        }
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+ 
+    //RequisicaoCadastroEmpresa(empresa);
+}
+//------    
 
 
-    return (
-        <div>
-            <NavbarCadastro />
-            <Footer />
-            <main>
-                <div className='background'>
+return (
+    <div>
+        <NavbarCadastro />
+        <Footer />
+        <main>
+            <div className='background'>
 
-                    <div className='form-container'>
-                        <form className='form' /*onSubmit={handleSubmit}>
-                            <h1 className='title'>Cadastro da Empresa</h1>
+                <div className='form-container'>
+                    <form className='form' /*onSubmit={handleSubmit}>
+                        <h1 className='title'>Cadastro da Empresa</h1>
 
-                            <input className='input'
-                                type="text"
-                                placeholder="Razão social"
-                                required value={formData.razaoSocial}
-                                onChange={(e) => { handleFormEdit(e, 'razaoSocial') }} />
+                        <input className='input'
+                            type="text"
+                            placeholder="Razão social"
+                            required value={formData.razaoSocial}
+                            onChange={(e) => { handleFormEdit(e, 'razaoSocial') }} />
 
-                            <input className='input'
-                                type="text"
-                                placeholder="CNPJ"
-                                required value={formData.cnpj}
-                                onChange={(e) => { handleFormEdit(e, 'cnpj') }} />
+                        <input className='input'
+                            type="text"
+                            placeholder="CNPJ"
+                            required value={formData.cnpj}
+                            onChange={(e) => { handleFormEdit(e, 'cnpj') }} />
 
-                            <input className='input'
-                                type="text"
-                                placeholder="Contato da empresa" required value={formData.contatoDaEmpresa}
-                                onChange={(e) => { handleFormEdit(e, 'contatoDaEmpresa') }} />
+                        <input className='input'
+                            type="text"
+                            placeholder="Contato da empresa" required value={formData.contatoDaEmpresa}
+                            onChange={(e) => { handleFormEdit(e, 'contatoDaEmpresa') }} />
 
-                            <input className='input'
-                                type="text"
-                                placeholder="Pregão / Tipo de serviço"
-                                required value={formData.tipoDeServico}
-                                onChange={(e) => { handleFormEdit(e, 'tipoDeServico') }} />
+                        <input className='input'
+                            type="text"
+                            placeholder="Pregão / Tipo de serviço"
+                            required value={formData.tipoDeServico}
+                            onChange={(e) => { handleFormEdit(e, 'tipoDeServico') }} />
 
-                            <input className='input'
-                                type="text"
-                                placeholder="Valor estimado do contrato"
-                                required value={formData.valorEstimadoContrato}
-                                onChange={(e) => { handleFormEdit(e, 'valorEstimadoContrato') }} />
+                        <input className='input'
+                            type="text"
+                            placeholder="Valor estimado do contrato"
+                            required value={formData.valorEstimadoContrato}
+                            onChange={(e) => { handleFormEdit(e, 'valorEstimadoContrato') }} />
 
 
-                            <div className='button-container'>
+                        <div className='button-container'>
 
-                                <Link to='/empresaInfo'>
-                                    <button className='button-submit' type='submit' onClick={handleCadastroEmpresa}>
-                                    Cadastrar
-                                </button>
-                                </Link>
+                            <Link to='/empresaInfo'>
+                                <button className='button-submit' type='submit' onClick={handleCadastroEmpresa}>
+                                Cadastrar
+                            </button>
+                            </Link>
 
-                                <Link to='/'>
-                                    <button className='button-cancelar'>Cancelar</button>
-                                </Link>
+                            <Link to='/'>
+                                <button className='button-cancelar'>Cancelar</button>
+                            </Link>
 
-                            </div>
+                        </div>
 
-                        </form>
-                    </div>
-
+                    </form>
                 </div>
-            </main>
-        </div>
 
-    )
+            </div>
+        </main>
+    </div>
+
+)
 }*/

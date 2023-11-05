@@ -1,6 +1,6 @@
 import React from "react";
 import '../style/formStyle.css'
-import Navbar from "../../../components/Navbar/navbar-home/navbar";
+import Navbar from "../../../components/Navbar/navbar/navbar";
 import Footer from "../../../components/Footer/footer";
 
 
