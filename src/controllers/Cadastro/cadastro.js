@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 
 export default function Cadastro() {
     const [formData, setFormData] = useState({
-        razaoSocial: '',
-        cnpj: '',
-        contatoEmpresa: '',
-        tipoServico: '',
-        valorEstimadoContrato: '',
+        razaoSocial: 'Empresa.SA',
+        cnpj: '10321654000198',
+        contatoEmpresa: 'email@email.com',
+        tipoServico: 'PR03330/2023 - Manutenção',
+        valorEstimadoContrato: '550000',
     });
 
     const RequisicaoCadastroEmpresa = (empresa) => {

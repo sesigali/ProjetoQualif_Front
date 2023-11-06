@@ -45,8 +45,8 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
     <div>
       <h1 className="title-info">Patrimônio Líquido</h1>
       <div className='patrimonioInfo'>
-        <label>Valor Estimado do Contrato:</label>
-        <span>{valorEstimadoContrato}</span>
+        <label>Valor Estimado do Contrato: R$ </label>
+        <span>{valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
       <div>
         <label className='patrimonioInfo'>Patrimônio Líquido:</label>
@@ -59,10 +59,10 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
       </div>
       {indiceResult && (
         <div>
-          <p>Resultados:</p>
-          <p>Requisito Mínimo: {indiceResult.requisitoMinimo} = 10%</p>
-          <p>Atende Requisito: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
-          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio} %</p>
+          <p><h4>Resultados</h4></p>
+          <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+          <p>Atende ao Requisito: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
+          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</p>
         </div>
       )}
     </div>

@@ -52,8 +52,8 @@ export default function CompromissosAssumidosInfo({
       
       <form>
         <div className="compromissoInfo">
-          <label>Compromissos Assumidos:</label>
-          <span>{compromissosAssumidos}</span>
+          <label>Compromissos Assumidos: R$ </label>
+          <span>{compromissosAssumidos.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
         <div className="compromissoInfo">
           <label>Receita Bruta:</label>
