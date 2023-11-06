@@ -85,7 +85,7 @@ export default function Cadastro() {
                             <input
                                 className='input'
                                 type="text"
-                                placeholder="Tipo de serviço - Número do pregão"
+                                placeholder="Número do pregão - Tipo de serviço "
                                 required
                                 value={formData.tipoServico}
                                 onChange={(e) => setFormData({ ...formData, tipoServico: e.target.value })}
