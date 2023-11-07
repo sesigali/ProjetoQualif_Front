@@ -1,112 +1,104 @@
 import React, { useState, useEffect } from "react";
-//import IndiceInfo from "../IndiceInfo/indiceInfo";
-import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
-import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
 import axios from "axios";
+//import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
+import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
 
 export default function ComplementacaoInfo({
   valorEstimadoContrato,
   ativoCirculante,
   passivoCirculante,
   patrimonioLiquido,
-  //initialValue = 0,
-  //compromissosAssumidos,
 }) {
+  // Variáveis de estado
   const [capitalGiro, setCapitalGiro] = useState("");
   const [ccl, setCcl] = useState("");
   const [umDozeAvos, setUmDozeAvos] = useState("");
+  const [txCclValorEstimado, settxCclValorEstimado] = useState("");
   const [indiceResult, setIndiceResult] = useState("");
-  //const initialValue = 0; // Substitua 0 pelo valor inicial desejado
   const [compromissosAssumidos, setCompromissosAssumidos] = useState("");
   const [erro, setErro] = useState(null);
-  const [ultimoCadastro, setUltimoCadastro] = useState({
-    valorEstimadoContrato: '',
-  });
+  const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
 
-
-  async function fetchUltimoCadastro() {
-    try {
+  // Função para buscar os dados mais recentes quando o componente é montado
+  useEffect(() => {
+    async function fetchUltimoCadastro() {
+      try {
         const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
         const data = response.data;
 
         if (data) {
-            setUltimoCadastro(data);
+          setUltimoCadastro(data);
         }
-    } catch (error) {
+      } catch (error) {
         console.error(error);
+      }
     }
-  }
 
-  fetchUltimoCadastro();
+    fetchUltimoCadastro();
+  }, []);
+
+  // Calcular valores quando as dependências mudam
   useEffect(() => {
-    setErro(null); // Limpa o erro a cada nova avaliação
-    //setErro(erro); 
+    setErro(null);
 
-    // Verifique se valorEstimadoContrato foi fornecido e é um número válido
     if (!ultimoCadastro.valorEstimadoContrato || isNaN(ultimoCadastro.valorEstimadoContrato)) {
-      setErro("Por favor, forneça valor válido para a Valor Estimado Contrato.");
+      setErro("Por favor, forneça um valor válido para o Valor Estimado do Contrato.");
       return;
     }
-    
-    // Converte o valor estimado para número
+
+    const patrimonioLiquidoNum = parseFloat(patrimonioLiquido);
     const valorEstimadoNum = parseFloat(ultimoCadastro.valorEstimadoContrato);
-
-    // Calcula o requisito mínimo de 16,66% do valor estimado
     const requisitoMinimo = (16.66 / 100) * valorEstimadoNum;
-
-    // Verifica se o CCL atende ao requisito mínimo
-    const atendeRequisitos = parseFloat(capitalGiro) >= requisitoMinimo;
-
-    // Calcula o Capital de Giro
     const cclValue = parseFloat(ativoCirculante) - parseFloat(passivoCirculante);
-
-    // Calcula 1/12 dos Compromissos Assumidos
-    const umDozeAvosIndice =  parseFloat(compromissosAssumidos) / 12;
-    
-    const umDozeAvosValue = (parseFloat(patrimonioLiquido) / parseFloat(compromissosAssumidos)) * 12;
-
-    // Verifica se ultrapassa o valor acima
-    const ultrapassaValor = parseFloat(umDozeAvosValue) > parseFloat(valorEstimadoNum);
+    const taxaEmpresaCclContrato = (cclValue / valorEstimadoNum) * 100;
+    const umDozeAvosIndice = parseFloat(compromissosAssumidos) / 12;
+    const umDozeAvosValue = (parseFloat(patrimonioLiquidoNum) / parseFloat(compromissosAssumidos)) * 12;
+    const ultrapassaValor = parseFloat(umDozeAvosIndice) > parseFloat(patrimonioLiquidoNum);
+    const atendeRequisitos = cclValue >= requisitoMinimo;
 
     setCapitalGiro(atendeRequisitos);
     setCcl(cclValue);
     setUmDozeAvos(umDozeAvosIndice);
+    settxCclValorEstimado(taxaEmpresaCclContrato);
 
-    // Define o resultado
+    console.log("umDozeAvosIndice", umDozeAvosIndice);
+    console.log("umDozeAvosValue", umDozeAvosValue);
+    console.log("ultrapassaValor", ultrapassaValor);
+    console.log("patrimonio", patrimonioLiquidoNum);
+
     setIndiceResult({
       requisitoMinimo,
       atendeRequisitos,
       umDozeAvosValue,
       ultrapassaValor,
+      patrimonioLiquido,
+      patrimonioLiquidoNum,
+      txCclValorEstimado,
     });
   }, [ultimoCadastro.valorEstimadoContrato, capitalGiro, ativoCirculante, passivoCirculante, patrimonioLiquido, compromissosAssumidos]);
 
   return (
     <div>
-      <PatrimonioLiquido valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} />
+      {/* Renderizar o componente PatrimonioLiquido */}
       <hr />
       <h1 className="title-info">Complementação da Qualificação Econômico-Financeira</h1>
       <form>
         <p>Comprovação de possuir Capital Circulante Líquido (CCL) ou Capital de Giro <br>
         </br>(Ativo Circulante - Passivo Circulante) de, no mínimo, 16,66% (dezesseis inteiros <br>
         </br> e sessenta e seis centésimos por cento) do valor estimado do contrato.</p>
-        
-          {/* trazer valor do indiceInfo*/}
+
         <div className="complInfo">
-          <label>Ativo Circulante: R$ {ativoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>
-          {/* trazer valor do indiceInfo*/}
+          <label>Ativo Circulante: R$ {ativoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</label>
         </div>
         <div className="complInfo">
-          <label>Passivo Circulante: R$ {passivoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>
+          <label>Passivo Circulante: R$ {passivoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</label>
         </div>
-          {/* digitar valor */}
         <div className="complInfo">
-          <label>Capital Circulante Líquido (CCL) ou Capital de Giro: R$ {ccl.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>
-        </div>
+          {/* Exibir "Indefinido" se o valor de ccl estiver vazio ou indefinido */}
+          <label>Capital Circulante Líquido (CCL) ou Capital de Giro: R$ {isNaN(ccl) ? "Indefinido" : ccl.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>        </div>
         <div className="complInfo">
           <label>Valor Estimado do Contrato: R$ {ultimoCadastro.valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>
         </div>
-          {/* digitar valor */}
         <div className="complInfo">
           <label>Compromissos Assumidos:</label>
           <input
@@ -115,9 +107,8 @@ export default function ComplementacaoInfo({
             onChange={(e) => setCompromissosAssumidos(e.target.value)}
           />
 
-            {/* passar a função para retornar o calculo */}
           <div className="complInfo">
-            <label>Total de Capital de Giro estimado sobre o valor da contratação: "retorna o valor %"</label>
+            <label>Total de Capital de Giro estimado sobre o valor da contratação: {isNaN(txCclValorEstimado) ? "Indefinido" : txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</label>
           </div>
 
           <div>
@@ -126,23 +117,25 @@ export default function ComplementacaoInfo({
           </div>
 
         </div>
-        {umDozeAvos && (
-          <div>
-            <p>1/12 dos Compromissos Assumidos: R$ {umDozeAvos.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          </div>
-        )}
+        
         {indiceResult && (
           <div>
             <p><h4>Resultados</h4></p>
-            <p>Requisito mínimo 16,66% do valor estimado: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-            <p>Atende aos Requisitos: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
-            <p>{/**VERIFICAR OS ITENS DE 16,66% E 1/12, POIS NAO ESTÃO BATENDO COM O REQUISITO MÍNIMO */}</p>
-            <p>Ultrapassa o 1/12 é maior que valor estimado: {indiceResult.ultrapassaValor ? "Sim" : "Não"}</p>
+            <p>Requisito mínimo CCL 16,66% do valor estimado: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            <p>Taxa da empresa de CCL sobre valor estimado: {isNaN(indiceResult.txCclValorEstimado) ? "Indefinido" :  indiceResult.txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</p>
+            <p>Atende aos Requisitos: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
+            <hr />
+            <p>1/12 do valor dos compromissos assumidos ultrapassa o Patrimonial Líquido: <span className={indiceResult.ultrapassaValor ? "texto-vermelho" : "texto-azul"}>{indiceResult.ultrapassaValor ? "Sim" : "Não"}</span></p>
+            {indiceResult.ultrapassaValor}
+            {indiceResult.atendeRequisitos}
+            <p>Patrimonial Líquido: R$ {indiceResult.patrimonioLiquidoNum}</p>
+            <p>1/12 dos Compromissos Assumidos: R$ {isNaN(umDozeAvos) ? "Indefinido" : umDozeAvos.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
           </div>
         )}
       </form>
       <hr />
-      <CompromissosAssumidosInfo compromissosAssumidos={compromissosAssumidos}/>
+      {/* Renderizar o componente CompromissosAssumidosInfo */}
+      <CompromissosAssumidosInfo compromissosAssumidos={compromissosAssumidos} />
     </div>
   );
 }

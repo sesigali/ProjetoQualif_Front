@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import ComplementacaoInfo from '../ComplementacaoInfo/complementacaoInfo';
 
-export default function PatrimonioLiquido({ valorEstimadoContrato }) {
-  const [patrimonioLiquido, setPatrimonioLiquido] = useState('');
+export default function PatrimonioLiqInfo({ 
+  valorEstimadoContrato,
+  patrimonioLiquido,
+}) {
+  //const [patrimonioLiquido, setPatrimonioLiquido] = useState('');
   const [indiceResult, setIndiceResult] = useState(null);
   const [erro, setErro] = useState(null);
 
@@ -10,6 +14,11 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
 
     // Verifique se valorEstimadoContrato foi fornecido e é um número válido
     if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
+      setErro('Por favor, forneça um valor válido para o Valor Estimado do Contrato.');
+      return;
+    }
+
+    if (!patrimonioLiquido || isNaN(patrimonioLiquido)) {
       setErro('Por favor, forneça um valor válido para o Valor Estimado do Contrato.');
       return;
     }
@@ -31,7 +40,6 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
       // Calcula a porcentagem em relação ao valor estimado
       const porcentagemPatrimonio = (patrimonioLiquidoNum / requisitoMinimo) * 100;
 
-
       // Define o resultado no índice
       setIndiceResult({
         requisitoMinimo,
@@ -44,27 +52,33 @@ export default function PatrimonioLiquido({ valorEstimadoContrato }) {
   return (
     <div>
       <h1 className="title-info">Patrimônio Líquido</h1>
+      <p>Comprovação de patrimônio líquido de 10% (dez por cento) do valor total estimado da <br/>contratação ou do item pertinente.</p>
       <div className='patrimonioInfo'>
         <label>Valor Estimado do Contrato: R$ </label>
-        <span>{valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+        <span>{valorEstimadoContrato}</span>
       </div>
-      <div>
+      <div className='patrimonioInfo'>
+        <label>Patrimônio Líquido: R$ </label>
+        <span>{patrimonioLiquido}</span>
+      </div>
+      {/**<div>
         <label className='patrimonioInfo'>Patrimônio Líquido:</label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
+          name="patrimonioLiquido"
           value={patrimonioLiquido}
           onChange={(e) => setPatrimonioLiquido(e.target.value)}
         />
-      </div>
+  </div>*/}
       {indiceResult && (
         <div>
-          <p><h4>Resultados</h4></p>
-          <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          <p>Atende ao Requisito: {indiceResult.atendeRequisitos ? "Sim" : "Não"}</p>
-          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</p>
+          <h4>Resultados</h4>
+          <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo}</p>
+          <p>Atende ao Requisito: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
+          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio} %</p>
         </div>
       )}
+
     </div>
   );
 }

@@ -9,6 +9,9 @@ export default function BalancoInfo() {
     const handleBalancoChange = (e) => {
         setBalancoConfLei(e.target.value);
         setShowAnexo(e.target.value === 'sim');
+        if (e.target.value == 'não') {
+            alert('Você selecionou "Não" para Balanço em conformidade com a lei. Entre em contato com o pregoeiro para solicitar a documentação necessária ao licitante.');
+        }
     };
 
     const handleAnexoChange = (e) => {
