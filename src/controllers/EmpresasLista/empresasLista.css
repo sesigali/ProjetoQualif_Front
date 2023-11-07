@@ -1,29 +1,25 @@
-.container-empresasLista{
-    /* background-color: rgb(143, 139, 139); */
-    padding: 15px;
-    /* box-shadow: 0px 0px 5px #ccc; */
-    border-radius: 5px;
-    max-width: 350px;
-    /* margin: 15px auto; */
-    /* word-break: break-all; */
-      
-}
-
-.lista{
-    margin-bottom: 15px;
-}
-
-.lista item1 item2:hover, .lista item1 item2.active  
-{
-    background-color: #161920;
-    color: #fff;
-}
-
 .empresasLista{
     display: flex;
     justify-content: column;
     align-items: center;
     margin-bottom: 10px;
+}
+
+.lista {
+    position: relative;
+    text-decoration: none;
+    display: block;
+    /* background-color: transparent; */
+    /* color: #BAB5BD; */
+    padding: 15px 20px;
+    font-size: 16px;
+    padding: 10px 5px 10px 5px;
+}
+
+.lista:hover  
+{
+    background-color: #161920;
+    color: #fff;
 }
 
 .item1 {
@@ -35,6 +31,16 @@
 
 .item2 {
     margin-top: -10px;
+}
+
+.item1:hover::before, .item2:hover::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    background-color: #247D9E;
+    width: 6px;
+    height: 100%;
 }
 
 .btn-delete{

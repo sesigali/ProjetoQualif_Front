@@ -48,9 +48,6 @@ export default function EmpresasLista() {
 
                     </div>
 
-
-
-
                 </div>
             ))}
 
