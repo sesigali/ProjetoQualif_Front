@@ -26,6 +26,21 @@ export default function EmpresasLista() {
         fetchData();
     }, []);
 
+    const handleDelete = async (idEmpresa) => {
+        try {
+            const response = await axios.delete(`http://localhost:8888/empresa/excluir/${idEmpresa}`);
+            if (response.status === 200) {
+                // Atualize a lista de empresas após a exclusão
+                const updatedEmpresas = empresas.filter(empresa => empresa.idEmpresa !== idEmpresa);
+                setEmpresas(updatedEmpresas);
+            } else {
+                console.error('Erro ao excluir a empresa');
+            }
+        } catch (error) {
+            console.error('Erro ao excluir a empresa', error);
+        }
+    };
+
 
     return (
         <div className="container-empresasLista">
@@ -37,7 +52,7 @@ export default function EmpresasLista() {
                         <div className="item1">
                             <h3 className="sub">{empresa.razaoSocial}</h3>
                         </div>
-                        <button>
+                        <button onClick={() => handleDelete(empresa.idEmpresa)}>
                             <FaTrash className="btn-delete" />
                         </button>
                     </div>
