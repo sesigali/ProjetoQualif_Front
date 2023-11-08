@@ -1,8 +1,11 @@
-import React, { useState } from "react";
-//import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PatrimonioLiqInfo from "../PatrimonioLiqInfo/patrimonioLiqInfo";
 import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 
-export default function IndiceInfo() {
+export default function IndiceInfo({
+ // patrimonioLiquido,
+}) {
   const [ativoCirculante, setAtivoCirculante] = useState("");
   const [ativoRealizavelLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("");
   const [ativoTotal, setAtivoTotal] = useState("");
@@ -11,6 +14,11 @@ export default function IndiceInfo() {
   const [liquidezGeral, setLiquidezGeral] = useState(null);
   const [solvenciaGeral, setSolvenciaGeral] = useState(null);
   const [liquidezCorrente, setLiquidezCorrente] = useState(null);
+  {/**--------------- Patrimônio------------- */}
+  // Estado para o valor do patrimônio líquido digitado
+  const [patrimonioLiquido, setPatrimonioLiquido] = useState("");
+  const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
+  const [erro, setErro] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +37,8 @@ export default function IndiceInfo() {
       const ativoTotalValue = parseFloat(ativoTotal.replace(",", ".")) || 0;
       const passivoCirculanteValue = parseFloat(passivoCirculante.replace(",", ".")) || 0;
       const passivoNaoCirculanteValue = parseFloat(passivoNaoCirculante.replace(",", ".")) || 0;
+      //const patrimonioLiquidoValue = parseFloat(patrimonioLiquido.replace(",", ".")) || 0;
+
 
       const liquidezGeralResult =
         (ativoCirculanteValue + ativoRealizavelLongoPrazoValue) /
@@ -56,6 +66,36 @@ export default function IndiceInfo() {
       }
     }
   };
+
+  {/**--------------- Patrimônio------------- */}
+  // Função para buscar os dados mais recentes quando o componente é montado
+  useEffect(() => {
+    async function fetchUltimoCadastro() {
+      try {
+        const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
+        const data = response.data;
+
+        if (data) {
+          setUltimoCadastro(data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    fetchUltimoCadastro();
+  }, []);
+
+  // Calcular valores quando as dependências mudam
+  useEffect(() => {
+    setErro(null);
+
+    if (!ultimoCadastro.valorEstimadoContrato || isNaN(ultimoCadastro.valorEstimadoContrato)) {
+      setErro("Por favor, forneça um valor válido para o Valor Estimado do Contrato.");
+      return;
+    }
+
+  }, [ultimoCadastro.valorEstimadoContrato, patrimonioLiquido]);
 
   return (
     <div className="">
@@ -106,6 +146,15 @@ export default function IndiceInfo() {
             onChange={handleInputChange}
           />
         </div>
+        <div>
+          <label className='patrimonioInfo'>Patrimônio Líquido:</label>
+          <input
+            type="text"
+            name="patrimonioLiquido"
+            value={patrimonioLiquido}
+            onChange={(e) => setPatrimonioLiquido(e.target.value)}
+          />
+      </div>
       </div>
       <div>
         <p>Liquidez Geral: {liquidezGeral || "Indefinido"}</p>
@@ -114,9 +163,14 @@ export default function IndiceInfo() {
       </div>
       <hr />
       {/* ... prop para complementação*/}
+      <PatrimonioLiqInfo 
+        valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} 
+        patrimonioLiquido={patrimonioLiquido}
+      />
       <ComplementacaoInfo
-          ativoCirculante={ativoCirculante}
-          passivoCirculante={passivoCirculante}
+        ativoCirculante={ativoCirculante}
+        passivoCirculante={passivoCirculante}
+        patrimonioLiquido={patrimonioLiquido}
       />
     </div>
   );
