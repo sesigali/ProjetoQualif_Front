@@ -12,17 +12,13 @@ import axios from "axios";
 
 export default function EmpresaInfo() {
     const [ultimoCadastro, setUltimoCadastro] = useState({
+        idEmpresa: '',
         razaoSocial: '',
         cnpj: '',
         contatoEmpresa: '',
         tipoServico: '',
         valorEstimadoContrato: '',
     });
-
-    // Defina as variáveis ativoCirculante e passivoCirculante com valores apropriados
-    //TERMINAR, PAROU AQUI
-    //const ativoCirculante = '1248027.52'; // Substitua pelo valor apropriado
-    //const passivoCirculante = '1116287.83'; // Substitua pelo valor apropriado
     
     useEffect(() => {
         async function fetchUltimoCadastro() {
@@ -47,6 +43,7 @@ export default function EmpresaInfo() {
             <Footer />
             <div className="container-form">
                 <h1 className="title-info">Empresa</h1>
+                {/* <p>ID: {ultimoCadastro.idEmpresa}</p> */}
                 <p>Razão Social: {ultimoCadastro.razaoSocial}</p>
                 <p>CNPJ: {ultimoCadastro.cnpj}</p>
                 <p>Contato da empresa: {ultimoCadastro.contatoEmpresa}</p>
@@ -54,7 +51,7 @@ export default function EmpresaInfo() {
                 {/**Não pode por .toFixed(2) no final do valor estimado contrato q da PAUUUUU*/}
                 <p>Valor estimado do Contrato: R$ {ultimoCadastro.valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <hr />
-                <CertidaoInfo />
+                <CertidaoInfo idEmpresa={ultimoCadastro.idEmpresa}/>
                 <hr />
                 <BalancoInfo />
                 <hr />
