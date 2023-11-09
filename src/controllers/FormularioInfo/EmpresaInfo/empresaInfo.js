@@ -9,6 +9,7 @@ import IndiceInfo from "../IndiceInfo/indiceInfo";
 //import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../style/formStyle.css"
 
 export default function EmpresaInfo() {
     const [ultimoCadastro, setUltimoCadastro] = useState({
