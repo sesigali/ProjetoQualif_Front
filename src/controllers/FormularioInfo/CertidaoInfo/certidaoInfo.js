@@ -65,7 +65,7 @@ export default function CertidaoInfo({idEmpresa}) {
 
     return (
         <div>
-            <h1 className="title-info">Certidão</h1>
+            <h1 className="title-info">Certidão de Falencia/Recuperação Judicial</h1>
             <form onSubmit={handleSubmit}>
                 {/* Validar certidão */}
                 <h3 className="sub-title">Certidão é ?</h3>
@@ -92,7 +92,7 @@ export default function CertidaoInfo({idEmpresa}) {
                 {formData.certidao === 'positiva' && (
                     <div>
                         {/* Doc de recuperação judicial */}
-                        <h3 className="sub-title">Empresa encaminhou documento de recuperação judicial?</h3>
+                        <h3 className="sub-title">Empresa encaminhou documento de acolhimento  judicial?</h3>
                         <label className="label-certidaoInfo">
                             <input
                                 type="radio"
@@ -101,6 +101,7 @@ export default function CertidaoInfo({idEmpresa}) {
                                 checked={formData.docRecuperacao === 'sim'}
                                 onChange={handleInputChange}
                             />Sim
+                           { /**SE SIM ANEXAR O COMPRAVANTE, SOMENTE PARA OS CASOS DE RECURAÇÃO JUDICIAL*/}
                         </label>
 
                         <label className="label-certidaoInfo">
@@ -113,6 +114,7 @@ export default function CertidaoInfo({idEmpresa}) {
                             />Não
                         </label>
                     </div>
+                    
                 )}
 
                 {(formData.certidao === 'negativa' || formData.docRecuperacao === 'sim') && (

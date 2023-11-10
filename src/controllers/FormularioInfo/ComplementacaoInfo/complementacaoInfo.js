@@ -87,12 +87,13 @@ export default function ComplementacaoInfo({
         </br>(Ativo Circulante - Passivo Circulante) de, no mínimo, 16,66% (dezesseis inteiros <br>
         </br> e sessenta e seis centésimos por cento) do valor estimado do contrato.</p>
 
-        <div className="complInfo">
+        {/* <div className="complInfo">
           <label>Ativo Circulante: R$ {ativoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</label>
         </div>
         <div className="complInfo">
           <label>Passivo Circulante: R$ {passivoCirculante.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 4 })}</label>
-        </div>
+        </div> */}
+        {/* pode tirar essa parte de cima */}
         <div className="complInfo">
           {/* Exibir "Indefinido" se o valor de ccl estiver vazio ou indefinido */}
           <label>Capital Circulante Líquido (CCL) ou Capital de Giro: R$ {isNaN(ccl) ? "Indefinido" : ccl.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</label>        </div>
@@ -111,10 +112,10 @@ export default function ComplementacaoInfo({
             <label>Total de Capital de Giro estimado sobre o valor da contratação: {isNaN(txCclValorEstimado) ? "Indefinido" : txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</label>
           </div>
 
-          <div>
+          {/* <div>
             <p>A Declaração de Compromissos Assumidos deve informar que 1/12 (um doze avos) <br>
             </br> dos contratos firmados pela licitante não é superior ao Patrimônio Líquido da licitante </p>
-          </div>
+          </div> */}
 
         </div>
         
@@ -125,6 +126,17 @@ export default function ComplementacaoInfo({
             <p>Taxa da empresa de CCL sobre valor estimado: {isNaN(indiceResult.txCclValorEstimado) ? "Indefinido" :  indiceResult.txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</p>
             <p>Atende aos Requisitos: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
             <hr />
+            <div>
+              <p>A Declaração de Compromissos Assumidos deve informar que 1/12 (um doze avos) <br>
+              </br> dos contratos firmados pela licitante não é superior ao Patrimônio Líquido da licitante </p>
+            </div>
+            <div className="complInfo">
+          <label>Compromissos Assumidos:</label>
+          <input
+            type="number"
+            value={compromissosAssumidos}
+            onChange={(e) => setCompromissosAssumidos(e.target.value)}
+            /></div>
             <p>1/12 do valor dos compromissos assumidos ultrapassa o Patrimonial Líquido: <span className={indiceResult.ultrapassaValor ? "texto-vermelho" : "texto-azul"}>{indiceResult.ultrapassaValor ? "Sim" : "Não"}</span></p>
             {indiceResult.ultrapassaValor}
             {indiceResult.atendeRequisitos}
