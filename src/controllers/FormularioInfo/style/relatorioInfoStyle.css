@@ -1,0 +1,36 @@
+.container{
+    padding-top: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 249, 249);
+}
+
+.container-form{
+    background-color:#fff;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn-empresaInfo{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.tituloRelatorio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.imageRelatorio{
+    width: 12%;
+    margin-top: 1rem;
+}
+
+.linhahr{
+    border: 2px solid #82BB42 ;
+
+
+}
