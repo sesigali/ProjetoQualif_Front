@@ -75,7 +75,7 @@ export default function PatrimonioLiqInfo({
           <h4>Resultados</h4>
           <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo}</p>
           <p>Atende ao Requisito: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
-          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio} %</p>
+          <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio.toFixed(2)}%</p>
         </div>
       )}
 

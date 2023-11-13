@@ -25,7 +25,7 @@ export default function CertidaoInfo({idEmpresa}) {
         const { certidao, docRecuperacao, anexo } = formData;
 
         if (docRecuperacao === 'não') {
-            alert('Você selecionou "Não" para recuperação judicial, mas não anexou o documento. Entre em contato com o pregoeiro para fornecer a documentação pendente.');
+            alert('Você selecionou "Não" para recuperação judicial. Entre em contato com o pregoeiro para solicitar a documentação pendente.');
             return;
         }
 
@@ -41,10 +41,10 @@ export default function CertidaoInfo({idEmpresa}) {
             idEmpresa: idEmpresa, // Substitua pelo ID apropriado da empresa
         };
 
-        console.log('certidaoFalencia', anexo);
+        /* console.log('certidaoFalencia', anexo);
         console.log('naturezaCertidao', certidao);
         console.log('planoRecuperacao', docRecuperacao);
-        console.log('iDEmpresa', idEmpresa);
+        console.log('iDEmpresa', idEmpresa); */
 
         // Enviar dados para o backend
         enviarDadosParaBackend(data);

@@ -4,41 +4,37 @@ import PatrimonioLiqInfo from "../PatrimonioLiqInfo/patrimonioLiqInfo";
 import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 
 export default function IndiceInfo({
- // patrimonioLiquido,
+  idEmpresa,
+  //valorEstimadoContrato, ARRUMA CÓDIGO, E TIRAR MÉTODO DE BUSCAR ÚLTIMO CADASTRO, E PUXAR O PROP
 }) {
   const [ativoCirculante, setAtivoCirculante] = useState("");
-  const [ativoRealizavelLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("");
+  const [ativoReaLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("");
   const [ativoTotal, setAtivoTotal] = useState("");
   const [passivoCirculante, setPassivoCirculante] = useState("");
   const [passivoNaoCirculante, setPassivoNaoCirculante] = useState("");
   const [liquidezGeral, setLiquidezGeral] = useState(null);
   const [solvenciaGeral, setSolvenciaGeral] = useState(null);
   const [liquidezCorrente, setLiquidezCorrente] = useState(null);
-  {/**--------------- Patrimônio------------- */}
-  // Estado para o valor do patrimônio líquido digitado
   const [patrimonioLiquido, setPatrimonioLiquido] = useState("");
   const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
   const [erro, setErro] = useState(null);
+  const [formularioEnviado, setFormularioEnviado] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
     if (/^(\d*[\.,]?\d*)$/.test(value) || value === "") {
-      // Verifica se o valor é um número ou está vazio
       if (name === "ativoCirculante") setAtivoCirculante(value);
-      if (name === "ativoRealizavelLongoPrazo") setAtivoRealizavelLongoPrazo(value);
+      if (name === "ativoReaLongoPrazo") setAtivoRealizavelLongoPrazo(value);
       if (name === "ativoTotal") setAtivoTotal(value);
       if (name === "passivoCirculante") setPassivoCirculante(value);
       if (name === "passivoNaoCirculante") setPassivoNaoCirculante(value);
 
-      // Calcula os índices automaticamente
       const ativoCirculanteValue = parseFloat(ativoCirculante.replace(",", ".")) || 0;
-      const ativoRealizavelLongoPrazoValue = parseFloat(ativoRealizavelLongoPrazo.replace(",", ".")) || 0;
+      const ativoRealizavelLongoPrazoValue = parseFloat(ativoReaLongoPrazo.replace(",", ".")) || 0;
       const ativoTotalValue = parseFloat(ativoTotal.replace(",", ".")) || 0;
       const passivoCirculanteValue = parseFloat(passivoCirculante.replace(",", ".")) || 0;
       const passivoNaoCirculanteValue = parseFloat(passivoNaoCirculante.replace(",", ".")) || 0;
-      //const patrimonioLiquidoValue = parseFloat(patrimonioLiquido.replace(",", ".")) || 0;
-
 
       const liquidezGeralResult =
         (ativoCirculanteValue + ativoRealizavelLongoPrazoValue) /
@@ -67,8 +63,6 @@ export default function IndiceInfo({
     }
   };
 
-  {/**--------------- Patrimônio------------- */}
-  // Função para buscar os dados mais recentes quando o componente é montado
   useEffect(() => {
     async function fetchUltimoCadastro() {
       try {
@@ -86,7 +80,6 @@ export default function IndiceInfo({
     fetchUltimoCadastro();
   }, []);
 
-  // Calcular valores quando as dependências mudam
   useEffect(() => {
     setErro(null);
 
@@ -97,10 +90,33 @@ export default function IndiceInfo({
 
   }, [ultimoCadastro.valorEstimadoContrato, patrimonioLiquido]);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8888/indice/adicionar', {
+        ativoCirculante,
+        ativoReaLongoPrazo,
+        ativoTotal,
+        passivoCirculante,
+        passivoNaoCirculante,
+        patrimonioLiquido,
+        idEmpresa: idEmpresa,
+      });
+
+      console.log('Dados enviados com sucesso:', response.data);
+
+      setFormularioEnviado(true);
+    } catch (error) {
+      console.error('Erro ao enviar os dados:', error);
+      setErro("Erro ao enviar os dados. Por favor, tente novamente.");
+    }
+  };
+
   return (
     <div className="">
       <h1 className="title-info">Índices Financeiros</h1>
-      <div className="">
+      <form onSubmit={handleSubmit}>
         <div className="indiceInfo">
           <label>Ativo Circulante:</label>
           <input
@@ -114,8 +130,8 @@ export default function IndiceInfo({
           <label>Ativo Realizável a Longo Prazo:</label>
           <input
             type="text"
-            name="ativoRealizavelLongoPrazo"
-            value={ativoRealizavelLongoPrazo}
+            name="ativoReaLongoPrazo"
+            value={ativoReaLongoPrazo}
             onChange={handleInputChange}
           />
         </div>
@@ -154,7 +170,12 @@ export default function IndiceInfo({
             value={patrimonioLiquido}
             onChange={(e) => setPatrimonioLiquido(e.target.value)}
           />
-      </div>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+      <div>
+        {formularioEnviado && <p>Dados enviados com sucesso!</p>}
+        {erro && <p>Ocorreu um erro ao enviar os dados: {erro}</p>}
       </div>
       <div>
         <p>Liquidez Geral: {liquidezGeral || "Indefinido"}</p>
@@ -163,14 +184,16 @@ export default function IndiceInfo({
       </div>
       <hr />
       {/* ... prop para complementação*/}
-      <PatrimonioLiqInfo 
-        valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} 
+      <PatrimonioLiqInfo
+        valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
         patrimonioLiquido={patrimonioLiquido}
+        idEmpresa={idEmpresa}
       />
       <ComplementacaoInfo
         ativoCirculante={ativoCirculante}
         passivoCirculante={passivoCirculante}
         patrimonioLiquido={patrimonioLiquido}
+        idEmpresa={idEmpresa}
       />
     </div>
   );
