@@ -54,9 +54,12 @@ export default function EmpresaInfo() {
                 <hr />
                 <CertidaoInfo idEmpresa={ultimoCadastro.idEmpresa}/>
                 <hr />
-                <BalancoInfo />
+                <BalancoInfo idEmpresa={ultimoCadastro.idEmpresa}/>
                 <hr />
-                <IndiceInfo />
+                <IndiceInfo 
+                idEmpresa={ultimoCadastro.idEmpresa}
+                valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
+                />
                 <hr />
                 {/*<PatrimonioLiquido valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} />*/}
                 {/*<hr />
