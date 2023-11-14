@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import '../EmpresasLista/empresasLista.css'
 import { FaTrash } from "react-icons/fa";
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 //passando a propriedade (empresas) que virão do banco de dados
@@ -43,32 +43,37 @@ export default function EmpresasLista() {
 
 
     return (
+
         <div className="container-empresasLista">
-
             {empresas.map((empresa, index) => (
-                <div key={index} className="lista">
+                <Link key={index} to={`/relatorioInfo/${empresa.idEmpresa}`}>
+                    <div key={index} className="lista">
+                        <div className="empresasLista">
+                            <div className="item1">
 
-                    <div className="empresasLista">
-                        <div className="item1">
-                            <h3 className="sub">{empresa.razaoSocial}</h3>
+                                <h3 className="sub">{empresa.razaoSocial}</h3>
+
+                            </div>
+                            <button onClick={() => handleDelete(empresa.idEmpresa)}>
+                                <FaTrash className="btn-delete" />
+                            </button>
                         </div>
-                        <button onClick={() => handleDelete(empresa.idEmpresa)}>
-                            <FaTrash className="btn-delete" />
-                        </button>
-                    </div>
 
-                    <div className="item2">
+                        <div className="item2">
 
-                        <h3 className="sub">{empresa.tipoServico}</h3>
+                            <h3 className="sub">{empresa.tipoServico}</h3>
+
+                        </div>
 
                     </div>
-
-                </div>
+                </Link>
             ))}
+
 
         </div>
 
     )
+
 }
 
 /*LINK PARA O RELATORIOINFO POR EMPRESA ID */

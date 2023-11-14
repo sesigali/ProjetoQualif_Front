@@ -1,0 +1,66 @@
+.containerRelatorio{
+    /* padding-top: 50px; */
+    background-color: #f5ffe8;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    padding: 0px 150px 10px 150px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.relatorio{
+    background-color: #fff;
+}
+
+.relatorioInfo{
+    margin: 0 20px 0 20px;
+    
+}
+
+.descricao{
+    margin-left: 30px;
+    font-weight:500;
+    font-size: 20px;  
+}
+
+.span{
+    font-weight: 450;
+    color: rgba(0, 11, 11, 0.619);
+    /* font-style: italic; */
+    
+}
+
+.subtituloRelatorio{
+    background-color: #e8fccf;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 25px;
+    color: hsla(146, 33%, 15%, 0.607);
+    margin-top: -13px;
+
+}
+
+.btn-empresaInfo{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.tituloRelatorio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin-top: -30px;
+}
+
+.imageRelatorio{
+    width: 12%;
+    margin-top: 1rem;
+}
+
+.linhahr{
+    border: 2px solid #82BB42 ;
+}
+

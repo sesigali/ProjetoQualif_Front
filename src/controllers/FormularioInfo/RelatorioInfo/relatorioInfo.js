@@ -1,54 +1,59 @@
 import React, { useState, useEffect } from "react";
-import '../style/relatorioInfoStyle.css'
-import Navbar from "../../../components/Navbar/navbar/navbar";
-import Footer from "../../../components/Footer/footer";
-import Image from '../style/img/Imagem.png'
+import '../RelatorioInfo/relatorioInfoStyle.css';
+import Image from '../RelatorioInfo/img/Imagem.png'
 import axios from 'axios';
+import { useParams } from "react-router-dom";
 
-export default function RelatorioInfo({ idEmpresa }) {
+export default function RelatorioInfo() {
 
+    const { idEmpresa } = useParams();
     const [empresa, setEmpresa] = useState({});
 
     useEffect(() => {
-        // Fazer uma chamada à sua API para obter os dados da empresa com base no ID.
-        axios.get(`http://localhost:8888/listarempresa/id:/${idEmpresa}`)
-          .then((response) => {
-            setEmpresa(response.data);
-          })
-          .catch(error => {
-            console.error('Erro ao buscar dados da empresa:', error);
-          });
-      }, [idEmpresa]);
+        axios.get(`http://localhost:8888/empresa/listarempresa/${idEmpresa}`)
+            .then((response) => {
+                // Verifica se a resposta não é null ou objeto vazio antes de atualizar o estado
+                if (response.data !== null && Object.keys(response.data).length !== 0) {
+                    setEmpresa(response.data);
+                } else {
+                    console.error('Nenhum dado encontrado para o ID da empresas:', idEmpresa);
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados da empresas:', error);
+            });
+    }, [idEmpresa]);
+
+
 
     return (
-        <div>
-            <Navbar />
-            <Footer />
-
-            <div className="container">
-                <div className="container-form">
-                    <div>
+        <div className="containerRelatorio">
+            <div className="">
+                <div className="relatorio">
+                    <div className="relatorioInfo">
                         <img src={Image} alt="Imagem" className="imageRelatorio" />
                         <p className="tituloRelatorio">Relatório</p>
                     </div>
-                    <hr className="linhahr"/>
+                    <hr className="linhahr" />
 
-                    <p>Empresa</p>
-                    <ul>
-                        <li>Razão Social:{empresa.razaoSocial}</li>
-                        <li>CNPJ:{empresa.cnpj}</li>
-                        <li>Contado da Empresa:{empresa.contatoEmpresa}</li>
-                    </ul>
-                    <hr/>
-                    <br/>
-                    <p>Este relatório apresenta as informações relevantes sobre a empresa "{empresa.razaoSocial}" e sua qualificação econômico-financeira para participação em licitação do "{empresa.tipoServiço}". É importante ressaltar que a empresa deve fornecer todos os documentos e informações necessárias para atender aos requisitos da licitação.</p>
+                    <p className="subtituloRelatorio">Empresa</p>
+                    
+                    <ul className="listaRelatorio">
+                            <li className="descricao">Razão Social: <span className="span">{empresa.razaoSocial}</span></li>
+                            <li className="descricao">CNPJ: <span className="span">{empresa.cnpj}</span> </li>
+                            <li className="descricao">Contato da Empresa:  <span className="span">{empresa.contatoEmpresa}</span></li>
+                            <li className="descricao">Número do pregão - Tipo de serviço: <span className="span">{empresa.tipoServico}</span></li>
+                            <li className="descricao">Valor estimado do contrato: <span className="span">{empresa.valorEstimadoContrato}</span></li>
+                        </ul>
 
+                    <hr />
+                    <br />
+                    
                     <br></br>
                     <button className="print btn-empresaInfo">Imprimir</button>
                 </div>
 
             </div>
-
         </div>
 
     )
