@@ -43,7 +43,7 @@ export default function RelatorioInfo() {
                             <li className="descricao">CNPJ: <span className="span">{empresa.cnpj}</span> </li>
                             <li className="descricao">Contato da Empresa:  <span className="span">{empresa.contatoEmpresa}</span></li>
                             <li className="descricao">Número do pregão - Tipo de serviço: <span className="span">{empresa.tipoServico}</span></li>
-                            <li className="descricao">Valor estimado do contrato: <span className="span">{empresa.valorEstimadoContrato}</span></li>
+                            <li className="descricao">Valor estimado do contrato: <span className="span">R$ {empresa.valorEstimadoContrato}</span></li>
                         </ul>
 
                     <hr />

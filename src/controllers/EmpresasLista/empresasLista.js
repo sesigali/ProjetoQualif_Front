@@ -50,28 +50,24 @@ export default function EmpresasLista() {
                     <div key={index} className="lista">
                         <div className="empresasLista">
                             <div className="item1">
-
                                 <h3 className="sub">{empresa.razaoSocial}</h3>
-
                             </div>
                             <button onClick={() => handleDelete(empresa.idEmpresa)}>
                                 <FaTrash className="btn-delete" />
                             </button>
                         </div>
-
                         <div className="item2">
-
                             <h3 className="sub">{empresa.tipoServico}</h3>
-
                         </div>
-
+                       
                     </div>
                 </Link>
             ))}
 
+           
 
         </div>
-
+                    
     )
 
 }
