@@ -70,9 +70,11 @@ export default function EmpresaInfo() {
                 <br />
                 <br />
                 <div className="container-button">
-                    <Link to="/relatorioInfo">
+
+                    <Link to={`/relatorioInfo/${ultimoCadastro.idEmpresa}`}>
                         <button className="save btn-empresaInfo">Salvar</button>
                     </Link>
+
                     <Link to="/">
                         <button className="cancel btn-empresaInfo">Cancelar</button>
                     </Link>
@@ -83,3 +85,5 @@ export default function EmpresaInfo() {
         </div>
     );
 }
+
+
