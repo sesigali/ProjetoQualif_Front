@@ -16,13 +16,13 @@ export default function CertidaoInfo({
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        console.log('Estado Atual do Formulário CERTIDAO:', formData);
+        console.log('Estado Atual do Formulário CERTIDAO1:', formData);
     };
 
     const handleAnexoChange = (e) => {
         const file = e.target.files[0];
         setFormData({ ...formData, anexoCertidao: file });
-        console.log('Estado Atual do Formulário CERTIDAO:', formData);
+        console.log('Estado Atual do Formulário CERTIDAO2:', formData);
     };
 
     const handleSubmit = (e) => {
