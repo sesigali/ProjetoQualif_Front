@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import IndiceInfo from "../IndiceInfo/indiceInfo";
 
-export default function BalancoInfo({ idEmpresa }) {
+export default function BalancoInfo({ 
+    idEmpresa,
+    valorEstimadoContrato,
+    docRecuperacaoCertidao,
+    certidaoNaturezaCertidao,
+    anexoCertidao,
+}) {
     const [formData, setFormData] = useState({
         balancoConfLei: '',
-        anexo: '',
+        anexoBalanco: null,
         idEmpresa: '',
     });
+
+    const [mensagem, setMensagem] = useState(null);
 
     const handleBalancoChange = (e) => {
         setFormData({ ...formData, balancoConfLei: e.target.value });
@@ -17,40 +26,44 @@ export default function BalancoInfo({ idEmpresa }) {
 
     const handleAnexoChange = (e) => {
         const file = e.target.files[0];
-        setFormData({ ...formData, anexo: file });
+        setFormData({ ...formData, anexoBalanco: file });
     };
 
-    const handleSubmit = (e) => {
+    const validarFormulario = () => {
+        if (formData.balancoConfLei === '' || formData.anexoBalanco === null) {
+            setMensagem('Por favor, preencha todos os campos.');
+            return false;
+        }
+        return true;
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Adicione a lógica de validação conforme necessário
+        if (!validarFormulario()) {
+            return;
+        }
 
         const data = {
             conformidadeLei: formData.balancoConfLei,
-            balanco: formData.anexo,
-            idEmpresa: idEmpresa, // Substitua pelo ID apropriado da empresa
+            balanco: formData.anexoBalanco,
+            idEmpresa: idEmpresa,
         };
 
-        /* console.log('conformidadeLei', formData.balancoConfLei);
-        console.log('balanco', formData.anexo);
-        console.log('iDEmpresa', idEmpresa); */
+        try {
+            const response = await enviarDadosParaBackend(data);
+            setMensagem('Dados enviados com sucesso!');
+            console.log('Empresa adicionada com sucesso:', response);
+        } catch (error) {
+            setMensagem('Erro ao enviar os dados. Por favor, tente novamente.');
+            console.error('Erro ao adicionar empresa:', error);
+        }
+    };
 
-        // Enviar dados para o backend
-        enviarDadosParaBackend(data);
-    }
-
-    const enviarDadosParaBackend = (data) => {
-        axios.post('http://localhost:8888/balanco/adicionar', data)
-            .then((response) => {
-                if (response.status === 200) {
-                    return response.data; // Retorna a nova empresa criada
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                throw error;
-            });
-    }
+    const enviarDadosParaBackend = async (data) => {
+        const response = await axios.post('http://localhost:8888/balanco/adicionar', data);
+        return response.data;
+    };
 
     return (
         <div>
@@ -80,8 +93,22 @@ export default function BalancoInfo({ idEmpresa }) {
                             onChange={handleAnexoChange} />
                     </label>
                 </div>
+                {<button type="submit">Enviar</button>}
 
-                <button type="submit">Enviar</button>
+                <div>{mensagem && <p>{mensagem}</p>}</div>
+                
+                <hr />
+                <IndiceInfo 
+                    idEmpresa={idEmpresa}
+                    valorEstimadoContrato={valorEstimadoContrato}
+                    
+                    docRecuperacaoCertidao={docRecuperacaoCertidao}
+                    certidaoNaturezaCertidao={certidaoNaturezaCertidao}
+                    anexoCertidao={anexoCertidao}
+
+                    balancoConfLeiBalanco={formData.balancoConfLei}
+                    anexoBalanco={formData.anexoBalanco}
+                />
             </form>
         </div>
     )

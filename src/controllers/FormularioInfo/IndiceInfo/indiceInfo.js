@@ -5,7 +5,12 @@ import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 
 export default function IndiceInfo({
   idEmpresa,
-  //valorEstimadoContrato, ARRUMA CÓDIGO, E TIRAR MÉTODO DE BUSCAR ÚLTIMO CADASTRO, E PUXAR O PROP
+  valorEstimadoContrato,
+  docRecuperacaoCertidao,
+  certidaoNaturezaCertidao,
+  anexoCertidao,
+  balancoConfLeiBalanco,
+  anexoBalanco
 }) {
   const [ativoCirculante, setAtivoCirculante] = useState("");
   const [ativoReaLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("");
@@ -16,7 +21,7 @@ export default function IndiceInfo({
   const [solvenciaGeral, setSolvenciaGeral] = useState(null);
   const [liquidezCorrente, setLiquidezCorrente] = useState(null);
   const [patrimonioLiquido, setPatrimonioLiquido] = useState("");
-  const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
+  //const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
   const [erro, setErro] = useState(null);
   const [formularioEnviado, setFormularioEnviado] = useState(false);
 
@@ -63,14 +68,15 @@ export default function IndiceInfo({
     }
   };
 
-  useEffect(() => {
+  //APAGAR ESSE MÉTODO, NAO ESTÁ SENDO MAIS UTILIZADO
+/*   useEffect(() => {
     async function fetchUltimoCadastro() {
       try {
         const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
         const data = response.data;
 
         if (data) {
-          setUltimoCadastro(data);
+          //setUltimoCadastro(data);
         }
       } catch (error) {
         console.error(error);
@@ -78,17 +84,18 @@ export default function IndiceInfo({
     }
 
     fetchUltimoCadastro();
-  }, []);
+  }, []); */
 
+  //APAGAR ESSE MÉTODO, NAO ESTÁ SENDO MAIS UTILIZADO
   useEffect(() => {
     setErro(null);
 
-    if (!ultimoCadastro.valorEstimadoContrato || isNaN(ultimoCadastro.valorEstimadoContrato)) {
+    if (!valorEstimadoContrato || isNaN(valorEstimadoContrato)) {
       setErro("Por favor, forneça um valor válido para o Valor Estimado do Contrato.");
       return;
     }
 
-  }, [ultimoCadastro.valorEstimadoContrato, patrimonioLiquido]);
+  }, [valorEstimadoContrato, patrimonioLiquido]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -185,16 +192,29 @@ export default function IndiceInfo({
       <hr />
       {/* ... prop para complementação*/}
       <PatrimonioLiqInfo
-        valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
-        patrimonioLiquido={patrimonioLiquido}
         idEmpresa={idEmpresa}
+        valorEstimadoContrato={valorEstimadoContrato}
+        patrimonioLiquido={patrimonioLiquido}
       />
+
       <ComplementacaoInfo
-        ativoCirculante={ativoCirculante}
-        passivoCirculante={passivoCirculante}
-        patrimonioLiquido={patrimonioLiquido}
         idEmpresa={idEmpresa}
-      />
+
+        docRecuperacaoCertidao={docRecuperacaoCertidao}
+        certidaoNaturezaCertidao={certidaoNaturezaCertidao}
+        anexoCertidao={anexoCertidao}
+
+        balancoConfLeiBalanco={balancoConfLeiBalanco}
+        anexoBalanco={anexoBalanco}
+
+        ativoCirculanteIndice={ativoCirculante}
+        ativoReaLongoPrazoIndice={ativoReaLongoPrazo}
+        ativoTotalIndice={ativoTotal}
+        passivoCirculanteIndice={passivoCirculante}
+        passivoNaoCirculanteIndice={passivoNaoCirculante}
+        patrimonioLiquidoIndice={patrimonioLiquido}
+
+        />
     </div>
   );
 }
