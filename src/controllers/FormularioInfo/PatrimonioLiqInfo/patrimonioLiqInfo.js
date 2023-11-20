@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ComplementacaoInfo from '../ComplementacaoInfo/complementacaoInfo';
+//import ComplementacaoInfo from '../ComplementacaoInfo/complementacaoInfo';
 
 export default function PatrimonioLiqInfo({ 
   valorEstimadoContrato,
@@ -61,7 +61,7 @@ export default function PatrimonioLiqInfo({
         <label>Patrimônio Líquido: R$ </label>
         <span>{patrimonioLiquido}</span>
       </div>
-      {/**<div>
+{/**<div>
         <label className='patrimonioInfo'>Patrimônio Líquido:</label>
         <input
           type="text"

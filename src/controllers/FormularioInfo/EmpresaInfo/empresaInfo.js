@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar/navbar/navbar";
 import Footer from "../../../components/Footer/footer";
 import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
-import BalancoInfo from "../BalancoInfo/balancoInfo";
+//import BalancoInfo from "../BalancoInfo/balancoInfo";
 //import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
 //import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
-import IndiceInfo from "../IndiceInfo/indiceInfo";
+//import IndiceInfo from "../IndiceInfo/indiceInfo";
 //import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import axios from "axios";
 import "../style/formStyle.css"
 
@@ -52,22 +52,28 @@ export default function EmpresaInfo() {
                 {/**Não pode por .toFixed(2) no final do valor estimado contrato q da PAUUUUU*/}
                 <p>Valor estimado do Contrato: R$ {ultimoCadastro.valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <hr />
-                <CertidaoInfo idEmpresa={ultimoCadastro.idEmpresa}/>
-                <hr />
-                <BalancoInfo idEmpresa={ultimoCadastro.idEmpresa}/>
-                <hr />
-                <IndiceInfo 
-                idEmpresa={ultimoCadastro.idEmpresa}
-                valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
+                <CertidaoInfo 
+                    idEmpresa={ultimoCadastro.idEmpresa}
+                    valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
                 />
                 <hr />
+                {/* <BalancoInfo 
+                    idEmpresa={ultimoCadastro.idEmpresa}
+                    valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
+                /> */}
+                {/* <hr /> */}
+                {/* <IndiceInfo 
+                    idEmpresa={ultimoCadastro.idEmpresa}
+                    valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
+                /> */}
+                {/* <hr /> */}
                 {/*<PatrimonioLiquido valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} />*/}
                 {/*<hr />
                 <ComplementacaoInfo
                     ativoCirculante={ativoCirculante}
                     passivoCirculante={passivoCirculante}/>
                 <CompromissosAssumidosInfo />*/}
-                <br />
+            {/* <br />
                 <br />
                 <div className="container-button">
 
@@ -80,7 +86,7 @@ export default function EmpresaInfo() {
                     </Link>
                 </div>
                 <br />
-                <br />
+                <br /> */}
             </div>
         </div>
     );

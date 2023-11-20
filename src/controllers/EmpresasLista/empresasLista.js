@@ -63,13 +63,8 @@ export default function EmpresasLista() {
                     </div>
                 </Link>
             ))}
-
-           
-
-        </div>
-                    
+        </div>         
     )
-
 }
 
 /*LINK PARA O RELATORIOINFO POR EMPRESA ID */

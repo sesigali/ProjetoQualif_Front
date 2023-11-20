@@ -1,60 +1,66 @@
 import React, { useState } from "react";
 import axios from 'axios';
+import BalancoInfo from "../BalancoInfo/balancoInfo";
 
-export default function CertidaoInfo({idEmpresa}) {
+export default function CertidaoInfo({
+    idEmpresa,
+    valorEstimadoContrato
+}) {
     const [formData, setFormData] = useState({
         certidao: '',
         docRecuperacao: '',
-        anexo: '',
+        anexoCertidao: '',
         idEmpresa: '',
     });
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
+        console.log('Estado Atual do Formulário CERTIDAO1:', formData);
     };
 
     const handleAnexoChange = (e) => {
         const file = e.target.files[0];
-        setFormData({ ...formData, anexo: file });
+        setFormData({ ...formData, anexoCertidao: file });
+        console.log('Estado Atual do Formulário CERTIDAO2:', formData);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const { certidao, docRecuperacao, anexo } = formData;
+        const { certidao, docRecuperacao, anexoCertidao } = formData;
 
         if (docRecuperacao === 'não') {
             alert('Você selecionou "Não" para recuperação judicial. Entre em contato com o pregoeiro para solicitar a documentação pendente.');
             return;
         }
 
-        if (!anexo) {
+        if (!anexoCertidao) {
             alert('Você não anexou a Certidão.');
             return;
         }
 
         const data = {
-            certidaoFalencia: anexo,
+            certidaoFalencia: anexoCertidao,
             naturezaCertidao: certidao,
             planoRecuperacao: docRecuperacao,
             idEmpresa: idEmpresa, // Substitua pelo ID apropriado da empresa
         };
 
-        /* console.log('certidaoFalencia', anexo);
+        console.log('certidaoFalencia', anexoCertidao);
         console.log('naturezaCertidao', certidao);
         console.log('planoRecuperacao', docRecuperacao);
-        console.log('iDEmpresa', idEmpresa); */
+        console.log('iDEmpresa', idEmpresa);
 
         // Enviar dados para o backend
         enviarDadosParaBackend(data);
     }
 
     const enviarDadosParaBackend = (data) => {
-        axios.post('http://localhost:8888/certidao/adicionar', data) // Ajuste a URL do endpoint
+        axios.post('http://localhost:8888/certidao/adicionar', data) 
             .then((response) => {
                 if (response.status === 200) {
-                    return response.data; // Retorna a nova empresa criada
+                    return response.data; 
                 }
             })
             .catch((error) => {
@@ -126,8 +132,16 @@ export default function CertidaoInfo({idEmpresa}) {
                         </label>
                     </div>
                 )}
-
-                <button type="submit">Enviar</button>
+                {<button type="submit">Enviar</button>}
+               
+                <hr />
+                <BalancoInfo 
+                    idEmpresa={idEmpresa}
+                    valorEstimadoContrato={valorEstimadoContrato}
+                    docRecuperacaoCertidao={formData.docRecuperacao}
+                    certidaoNaturezaCertidao={formData.certidao}
+                    anexoCertidao={formData.anexoCertidao}
+                />
             </form>
         </div>
     )

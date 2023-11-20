@@ -3,11 +3,22 @@ import axios from "axios";
 import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
 
 export default function ComplementacaoInfo({
-  valorEstimadoContrato,
-  ativoCirculante,
-  passivoCirculante,
-  patrimonioLiquido,
   idEmpresa,
+  //valorEstimadoContrato,
+
+  docRecuperacaoCertidao,
+  certidaoNaturezaCertidao,
+  anexoCertidao,
+  balancoConfLeiBalanco,
+  anexoBalanco,
+
+  ativoCirculanteIndice,
+  ativoReaLongoPrazoIndice,
+  ativoTotalIndice,
+  passivoCirculanteIndice,
+  passivoNaoCirculanteIndice,
+  patrimonioLiquidoIndice
+
 }) {
   // Variáveis de estado
   const [capitalGiro, setCapitalGiro] = useState("");
@@ -46,10 +57,10 @@ export default function ComplementacaoInfo({
       return;
     }
 
-    const patrimonioLiquidoNum = parseFloat(patrimonioLiquido);
+    const patrimonioLiquidoNum = parseFloat(patrimonioLiquidoIndice);
     const valorEstimadoNum = parseFloat(ultimoCadastro.valorEstimadoContrato);
     const requisitoMinimo = (16.66 / 100) * valorEstimadoNum;
-    const cclValue = parseFloat(ativoCirculante) - parseFloat(passivoCirculante);
+    const cclValue = parseFloat(ativoCirculanteIndice) - parseFloat(passivoCirculanteIndice);
     const taxaEmpresaCclContrato = (cclValue / valorEstimadoNum) * 100;
     const umDozeAvosIndice = parseFloat(compromissosAssumidos) / 12;
     const umDozeAvosValue = (parseFloat(patrimonioLiquidoNum) / parseFloat(compromissosAssumidos)) * 12;
@@ -66,11 +77,11 @@ export default function ComplementacaoInfo({
       atendeRequisitos,
       umDozeAvosValue,
       ultrapassaValor,
-      patrimonioLiquido,
+      patrimonioLiquidoIndice,
       patrimonioLiquidoNum,
       txCclValorEstimado,
     });
-  }, [ultimoCadastro.valorEstimadoContrato, capitalGiro, ativoCirculante, passivoCirculante, patrimonioLiquido, compromissosAssumidos]);
+  }, [ultimoCadastro.valorEstimadoContrato, capitalGiro, ativoCirculanteIndice, passivoCirculanteIndice, patrimonioLiquidoIndice, compromissosAssumidos]);
 
   const handleCadastroCompromissos = async (event) => {
     event.preventDefault();
@@ -78,16 +89,15 @@ export default function ComplementacaoInfo({
     const compromissos = {
       comprAssumidos: compromissosAssumidos,
       idEmpresa: idEmpresa,
-      // adicione outros campos conforme necessário
     };
 
     try {
       // Adicione a lógica para enviar os compromissos para o backend
       console.log('DaBD', compromissos);
       const response = await axios.post('http://localhost:8888/complementacao/adicionar', compromissos);
-      console.log(response.data); // Trate a resposta conforme necessário
+      console.log(response.data); 
     } catch (error) {
-      console.error(error); // Trate os erros conforme necessário
+      console.error(error);
     }
   };
 
@@ -144,8 +154,23 @@ export default function ComplementacaoInfo({
       </form>
       <hr />
       <CompromissosAssumidosInfo 
-      compromissosAssumidos={compromissosAssumidos}
-      idEmpresa={idEmpresa}
+        idEmpresa={idEmpresa}
+
+        docRecuperacaoCertidao={docRecuperacaoCertidao}
+        certidaoNaturezaCertidao={certidaoNaturezaCertidao}
+        anexoCertidao={anexoCertidao}
+        
+        balancoConfLeiBalanco={balancoConfLeiBalanco}
+        anexoBalanco={anexoBalanco}
+
+        ativoCirculanteIndice={ativoCirculanteIndice}
+        ativoReaLongoPrazoIndice={ativoReaLongoPrazoIndice}
+        ativoTotalIndice={ativoTotalIndice}
+        passivoCirculanteIndice={passivoCirculanteIndice}
+        passivoNaoCirculanteIndice={passivoNaoCirculanteIndice}
+        patrimonioLiquidoIndice={patrimonioLiquidoIndice}
+
+        compromissosAssumidos={compromissosAssumidos}
       />
     </div>
   );

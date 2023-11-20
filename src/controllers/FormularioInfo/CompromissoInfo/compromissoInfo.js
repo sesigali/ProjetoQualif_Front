@@ -1,9 +1,24 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CadastroDbIndo from "../CadastroDbInfo/CadastroDbInfo";
 
 export default function CompromissosAssumidosInfo({
-  compromissosAssumidos,
   idEmpresa,
+
+  docRecuperacaoCertidao,
+  certidaoNaturezaCertidao,
+  anexoCertidao,
+  balancoConfLeiBalanco,
+  anexoBalanco,
+
+  ativoCirculanteIndice,
+  ativoReaLongoPrazoIndice,
+  ativoTotalIndice,
+  passivoCirculanteIndice,
+  passivoNaoCirculanteIndice,
+  patrimonioLiquidoIndice,
+
+  compromissosAssumidos,
 }) {
   const [receitaBruta, setReceitaBruta] = useState("");
   const [declaracao, setDeclaracao] = useState(null);
@@ -62,9 +77,9 @@ export default function CompromissosAssumidosInfo({
     try {
       console.log('DataBD', data);
       const response = await axios.post('http://localhost:8888/compromisso/adicionar', data);
-      console.log(response.data); // Trate a resposta conforme necessário
+      console.log(response.data);
     } catch (error) {
-      console.error(error); // Trate os erros conforme necessário
+      console.error(error);
     }
   };
 
@@ -133,8 +148,35 @@ export default function CompromissosAssumidosInfo({
             onChange={handleDreUpload}
           />
         </div>
+        {<button type="submit">Enviar</button>}
 
-        <button type="submit">Enviar</button>
+        <hr />
+        <CadastroDbIndo 
+          idEmpresa={idEmpresa}
+
+          docRecuperacaoCertidao={docRecuperacaoCertidao}
+          certidaoNaturezaCertidao={certidaoNaturezaCertidao}
+          anexoCertidao={anexoCertidao}
+          
+          balancoConfLeiBalanco={balancoConfLeiBalanco}
+          anexoBalanco={anexoBalanco}
+
+          ativoCirculanteIndice={ativoCirculanteIndice}
+          ativoReaLongoPrazoIndice={ativoReaLongoPrazoIndice}
+          ativoTotalIndice={ativoTotalIndice}
+          passivoCirculanteIndice={passivoCirculanteIndice}
+          passivoNaoCirculanteIndice={passivoNaoCirculanteIndice}
+          patrimonioLiquidoIndice={patrimonioLiquidoIndice}
+
+          compromissosAssumidos={compromissosAssumidos}
+
+          receitaBrutaCompromisso={receitaBruta}
+          declaracaoCompromisso={declaracao}
+          dreCompromisso={dre}
+          justRecuperacaoCompromisso={justificativaRecuperacao}
+
+        />
+
       </form>
     </div>
   );
