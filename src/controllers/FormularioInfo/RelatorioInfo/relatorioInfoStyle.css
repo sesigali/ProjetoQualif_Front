@@ -1,66 +1,141 @@
-.containerRelatorio{
-    /* padding-top: 50px; */
-    background-color: #f5ffe8;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    padding: 0px 150px 10px 150px;
+@media print {
+    body {
+      margin: 0;
+      padding: 0;
+      line-height: 1.4em;
+    }
+
+    .containerRelatorio {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .relatorio {
+      background-color: #fff;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .relatorioInfo {
+      margin: 0 20px 0 20px;
+    }
+
+    .subtituloRelatorio {
+      padding: 5px 0 5px 0;
+      display: flex;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 25px;
+      color: hsla(146, 33%, 15%, 0.607);
+      background: #e8fccf;
+    }
+
+    .descricao {
+      margin-left: 30px;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    .span {
+      font-weight: 450;
+      color: rgba(0, 11, 11, 0.619);
+    }
+
+    .tituloRelatorio {
+      font-size: 40px;
+      margin-top: -30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .imageRelatorio {
+      width: 12%;
+      margin-top: 1rem;
+    }
+
+    .linhahr {
+      border: 2px solid #82BB42;
+      
+    }
+
+    .txt-vermelho {
+      color: red;
+    }
+    
+    .txt-azul {
+      color: blue;
+    }
+
+    .btn-empresaInfo {
+      display: none; 
+    }
+  }
+
+
+  .containerRelatorio {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+  }
 
-.relatorio{
+  .relatorio {
     background-color: #fff;
-}
+    padding: 20px;
+    box-sizing: border-box;
+  }
 
-.relatorioInfo{
+  .relatorioInfo {
     margin: 0 20px 0 20px;
-    
-}
+  }
 
-.descricao{
-    margin-left: 30px;
-    font-weight:500;
-    font-size: 20px;  
-}
-
-.span{
-    font-weight: 450;
-    color: rgba(0, 11, 11, 0.619);
-    /* font-style: italic; */
-    
-}
-
-.subtituloRelatorio{
+  .subtituloRelatorio {
+    margin-top: -13px;
     background-color: #e8fccf;
     display: flex;
     justify-content: center;
     font-weight: 600;
     font-size: 25px;
     color: hsla(146, 33%, 15%, 0.607);
-    margin-top: -13px;
+  }
 
-}
+  .descricao {
+    margin-left: 30px;
+    font-weight: 500;
+    font-size: 20px;
+  }
 
-.btn-empresaInfo{
-    cursor: pointer;
-    padding: 10px 20px;
-    border-radius: 5px;
-}
+  .span {
+    font-weight: 450;
+    color: rgba(0, 11, 11, 0.619);
+  }
 
-.tituloRelatorio{
+  .tituloRelatorio {
+    font-size: 40px;
+    margin-top: -30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
-    margin-top: -30px;
-}
+  }
 
-.imageRelatorio{
+  .imageRelatorio {
     width: 12%;
     margin-top: 1rem;
-}
+  }
 
-.linhahr{
-    border: 2px solid #82BB42 ;
-}
+  .linhahr {
+    border: 2px solid #82BB42;
+  }
+
+  .txt-vermelho {
+    color: red;
+  }
+  
+  .txt-azul {
+    color: blue;
+  }
 

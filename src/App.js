@@ -14,8 +14,9 @@ function App() {
         <Route exact path="/" element={<Home/>}/>
         <Route exact path="/cadastro" element={<Cadastro />}/>
         <Route exact path="/empresaInfo" element={<EmpresaInfo/>}/>
-        <Route exact path="/relatorioInfo/:idEmpresa" element={<RelatorioInfo/>}/>
+        {/* <Route exact path="/relatorioInfo/:idEmpresa" element={<RelatorioInfo/>}/> */}
 
+        <Route exact path="/relatorioInfo" element={<RelatorioInfo/>}/>
       </Routes>
     </BrowserRouter>
   )

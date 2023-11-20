@@ -111,10 +111,15 @@ export default function ComplementacaoInfo({
           <div>
             <p><h4>Resultados</h4></p>
             <p>Requisito mínimo CCL 16,66% do valor estimado: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+
+            
             <p>Total de Capital de Giro estimado sobre o valor da contratação: {isNaN(txCclValorEstimado) ? "Indefinido" : txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</p>
+
             <p>Taxa da empresa de CCL sobre valor estimado: {isNaN(indiceResult.txCclValorEstimado) ? "Indefinido" :  indiceResult.txCclValorEstimado.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} %</p>
+
             <p>Atende aos Requisitos: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
             <hr />
+
             <div>
               <p>A Declaração de Compromissos Assumidos deve informar que 1/12 (um doze avos)<br>
               </br> dos contratos firmados pela licitante não é superior ao Patrimônio Líquido da licitante </p>
