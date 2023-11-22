@@ -62,15 +62,7 @@
       
     }
 
-    .txt-vermelho {
-      color: red;
-    }
-    
-    .txt-azul {
-      color: blue;
-    }
-
-    .btn-empresaInfo {
+    .btn-relatorioInfo {
       display: none; 
     }
   }
@@ -131,11 +123,30 @@
     border: 2px solid #82BB42;
   }
 
+  .btn-relatorioInfo{
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
   .txt-vermelho {
     color: red;
   }
   
   .txt-azul {
+    color: blue;
+  }
+
+  .txt1-vermelho{
+    color: red;
+  }
+
+  .txt1-azul{
+    color: blue;
+  }
+
+  .menor{
+    color: red;
     color: blue;
   }
 

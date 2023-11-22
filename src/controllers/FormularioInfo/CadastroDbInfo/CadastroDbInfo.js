@@ -83,7 +83,7 @@ export default function CadastroDbIndo({
         idEmpresa: idEmpresa,
       },
     },
-    idEmpresa,
+    //idEmpresa,
   });
   console.log('Estado Atual do Formulário1:', formData);
 
@@ -117,7 +117,7 @@ export default function CadastroDbIndo({
         //if (Object.values(requestData).every(value => value !== undefined && value !== '')) {
           const response = await axios.post(`http://localhost:8888/${key}/adicionar`, {
             ...requestData,
-            idEmpresa: formData.idEmpresa,
+            //idEmpresa: formData.idEmpresa,
           });
 
           console.log(`Dados de ${key} enviados com sucesso!`, response);
