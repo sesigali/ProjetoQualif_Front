@@ -29,7 +29,7 @@ export default function CadastroDbIndo({
         planoRecuperacao: docRecuperacaoCertidao,
         naturezaCertidao: certidaoNaturezaCertidao,
         certidaoFalencia: anexoCertidao,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     balanco: {
@@ -37,7 +37,7 @@ export default function CadastroDbIndo({
       data: {
         conformidadeLei: balancoConfLeiBalanco,
         balanco: anexoBalanco,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     indice: {
@@ -64,7 +64,7 @@ export default function CadastroDbIndo({
       columns: ['comprAssumidos', 'idEmpresa'],
       data: {
         comprAssumidos: compromissosAssumidos,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     compromisso: {
@@ -80,13 +80,19 @@ export default function CadastroDbIndo({
         declaracaoCompr: declaracaoCompromisso,
         dre: dreCompromisso,
         justificativa: justRecuperacaoCompromisso,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     //idEmpresa,
   });
   console.log('Estado Atual do Formulário1:', formData);
-
+  console.log('Estado Atual do idEmpresa:', formData.idEmpresa);
+  console.log('Estado Atual do balanco:', formData.balanco);
+  console.log('Estado Atual do certidao:', formData.certidao);
+  console.log('Estado Atual do indice:', formData.indice);
+  console.log('Estado Atual do complementacao:', formData.complementacao);
+  console.log('Estado Atual do balanco.conformidadeLei:', formData.balanco.conformidadeLei);
+  
 /*   const handleFileChange = (e, section, name) => {
     const file = e.target.files[0];
     formData[section].data[name] = file;
