@@ -29,7 +29,7 @@ export default function CadastroDbIndo({
         planoRecuperacao: docRecuperacaoCertidao,
         naturezaCertidao: certidaoNaturezaCertidao,
         certidaoFalencia: anexoCertidao,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     balanco: {
@@ -37,7 +37,7 @@ export default function CadastroDbIndo({
       data: {
         conformidadeLei: balancoConfLeiBalanco,
         balanco: anexoBalanco,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     indice: {
@@ -64,7 +64,7 @@ export default function CadastroDbIndo({
       columns: ['comprAssumidos', 'idEmpresa'],
       data: {
         comprAssumidos: compromissosAssumidos,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     compromisso: {
@@ -80,13 +80,153 @@ export default function CadastroDbIndo({
         declaracaoCompr: declaracaoCompromisso,
         dre: dreCompromisso,
         justificativa: justRecuperacaoCompromisso,
-        idEmpresa: idEmpresa,
+        idEmpresa,
       },
     },
     //idEmpresa,
   });
   console.log('Estado Atual do Formulário1:', formData);
+  console.log('Estado Atual do idEmpresa:', formData.idEmpresa);
+  console.log('Estado Atual do balanco:', formData.balanco);
+  console.log('Estado Atual do certidao:', formData.certidao);
+  console.log('Estado Atual do indice:', formData.indice);
+  console.log('Estado Atual do complementacao:', formData.complementacao);
+  console.log('Estado Atual do balanco.conformidadeLei:', formData.balanco.conformidadeLei);
 
+//--------------------------------------------------------------------------------------------
+const [mensagem, setMensagem] = useState(null);
+
+const enviarTodasAsInformacoes = async () => {
+  await handleCadastroCertidao();
+  await handleCadastroBalanco();
+  await handleCadastroIndice();
+  await handleCadastroComplementacao();
+  await handleCadastroCompromissos();
+  setMensagem('Todas as informações foram enviadas com sucesso!');
+};
+
+//Certidao
+const handleCadastroCertidao = async () => {
+  
+
+  const certidaos = {
+    planoRecuperacao: docRecuperacaoCertidao,
+    naturezaCertidao: certidaoNaturezaCertidao,
+    certidaoFalencia: anexoCertidao,
+    idEmpresa: idEmpresa,
+  };
+
+  try {
+    // Adicione a lógica para enviar os certidaos para o backend
+    console.log('DaBD', certidaos);
+    const response = await axios.post('http://localhost:8888/certidao/adicionar', certidaos);
+    console.log(response.data); 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Balanço
+const handleCadastroBalanco = async (event) => {
+  
+
+  const balancos = {
+    conformidadeLei: balancoConfLeiBalanco,
+    balanco: anexoBalanco,
+    idEmpresa: idEmpresa,
+  };
+
+  try {
+    // Adicione a lógica para enviar os compromissos para o backend
+    console.log('DaBD', balancos);
+    const response = await axios.post('http://localhost:8888/balanco/adicionar', balancos);
+    console.log(response.data); 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Indices
+const handleCadastroIndice = async (event) => {
+  
+
+  const indices = {
+    ativoCirculante: ativoCirculanteIndice,
+    ativoReaLongoPrazo: ativoReaLongoPrazoIndice,
+    ativoTotal: ativoTotalIndice,
+    passivoCirculante: passivoCirculanteIndice,
+    passivoNaoCirculante: passivoNaoCirculanteIndice,
+    patrimonioLiquido: patrimonioLiquidoIndice,
+    idEmpresa: idEmpresa,
+  };
+
+  try {
+    // Adicione a lógica para enviar os compromissos para o backend
+    console.log('DaBD', indices);
+    const response = await axios.post('http://localhost:8888/indice/adicionar', indices);
+    console.log(response.data); 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Complementação
+const handleCadastroComplementacao = async (event) => {
+  
+
+  const complementacaos = {
+    comprAssumidos: compromissosAssumidos,
+    idEmpresa: idEmpresa,
+  };
+
+  try {
+    // Adicione a lógica para enviar os complementacaos para o backend
+    console.log('DaBD', complementacaos);
+    const response = await axios.post('http://localhost:8888/complementacao/adicionar', complementacaos);
+    console.log(response.data); 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//Compromissos
+const handleCadastroCompromissos = async (event) => {
+  
+
+  const compromissos = {
+    receitaBruta: receitaBrutaCompromisso,
+    declaracaoCompr: declaracaoCompromisso,
+    dre: dreCompromisso,
+    justificativa: justRecuperacaoCompromisso,
+    idEmpresa: idEmpresa,
+  };
+
+  try {
+    // Adicione a lógica para enviar os compromissos para o backend
+    console.log('DaBD', compromissos);
+    const response = await axios.post('http://localhost:8888/compromisso/adicionar', compromissos);
+    console.log(response.data); 
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleSubmit1 = async (event) => {
+  event.preventDefault();
+
+  await enviarTodasAsInformacoes();
+
+  // Adicione lógica adicional após o envio de todas as informações, se necessário.
+  setMensagem('Todas as informações foram enviadas com sucesso!');
+};
+
+
+
+//---------------------------------------------------------------------------------------------
+
+
+
+  
 /*   const handleFileChange = (e, section, name) => {
     const file = e.target.files[0];
     formData[section].data[name] = file;
@@ -165,6 +305,9 @@ export default function CadastroDbIndo({
         <button className="save btn-empresaInfo" type="button" onClick={handleSubmit}>
           Salvar
         </button>
+
+        <button type="button" onClick={handleSubmit1}>Enviar Todas as Informações</button>
+        <div>{mensagem && <p>{mensagem}</p>}</div>
 
         <Link to="/">
           <button className="cancel btn-empresaInfo">Cancelar</button>
