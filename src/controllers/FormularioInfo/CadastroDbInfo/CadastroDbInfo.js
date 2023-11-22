@@ -306,7 +306,9 @@ const handleSubmit1 = async (event) => {
           Salvar
         </button>
 
-        <button type="button" onClick={handleSubmit1}>Enviar Todas as Informações</button>
+        <Link onSubmit={handleSubmit1} to={`/relatorioInfo/${idEmpresa}`}>
+          <button className="save btn-empresaInfo" type="button">Enviar Todas as Informações</button>
+        </Link>
         <div>{mensagem && <p>{mensagem}</p>}</div>
 
         <Link to="/">
