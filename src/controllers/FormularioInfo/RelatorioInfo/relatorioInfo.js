@@ -22,7 +22,7 @@ export default function RelatorioInfo() {
             try {
                 await fetchEmpresa();
                 await fetchCertidao();
-                //await fetchBalanco();
+                await fetchBalanco();
                 await fetchIndice();
                 await fetchComplementacao();
                 await fetchCompromisso();
@@ -52,14 +52,14 @@ export default function RelatorioInfo() {
         }
     };
 
-    // const fetchBalanco = async () => {
-    //     const response = await axios.get(`http://localhost:8888/balanco/listarbalanco/${idEmpresa}`);
-    //     if (response.data !== null && Object.keys(response.data).length !== 0) {
-    //         setBalanco(response.data);
-    //     } else {
-    //         console.error('Nenhum balanço encontrado para o ID da empresa:', idEmpresa);
-    //     }
-    // };
+    const fetchBalanco = async () => {
+        const response = await axios.get(`http://localhost:8888/balanco/listarbalanco/${idEmpresa}`);
+        if (response.data !== null && Object.keys(response.data).length !== 0) {
+            setBalanco(response.data);
+        } else {
+            console.error('Nenhum balanço encontrado para o ID da empresa:', idEmpresa);
+        }
+    };
 
     const fetchIndice = async () => {
         const response = await axios.get(`http://localhost:8888/indice/listarindice/${idEmpresa}`);
@@ -163,7 +163,7 @@ export default function RelatorioInfo() {
                         <p className="subtituloRelatorio">Balanço Patrimonial
                         </p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Balanço está em conformidade com a lei: <span className="span">{balanco.conformidadeLei}sim</span></li>
+                            <li className="descricao">Balanço está em conformidade com a lei: <span className="span">{balanco.conformidadeLei}</span></li>
                         </ul>
                     </div>
 
