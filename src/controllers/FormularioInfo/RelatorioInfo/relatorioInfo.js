@@ -96,7 +96,7 @@ export default function RelatorioInfo() {
 
     const resultadoliquidezCorrente = ((indice.ativoCirculante) / (indice.passivoCirculante));
     //menor ou igual a um fica em vermelho o valor
-    const menorUm = (resultadoLiquidezGeral, resultadoSolvenciaGeral, resultadoliquidezCorrente) <= (1) ? "vermelho" : "azul";
+    // const menorUm = (resultadoLiquidezGeral, resultadoSolvenciaGeral, resultadoliquidezCorrente) <= (1) ? "vermelho" : "azul";
 
     //***PATRIMONIO LIQUIDO***//
     // Calcula o requisito mínimo de 10% do valor estimado contrato
@@ -183,11 +183,11 @@ export default function RelatorioInfo() {
                         </ul>
 
                         <ul className="listaRelatorio">
-                            <li className="descricao">Liquidez Geral: <span className={`menor ${menorUm}`}>{resultadoLiquidezGeral.toFixed(2)}</span></li>
+                            <li className="descricao">Liquidez Geral: <span className={` ${resultadoLiquidezGeral < 1 ? 'vermelho' : 'azul'}`}>{resultadoLiquidezGeral.toFixed(2)}</span></li>
 
-                            <li className="descricao">Solvência Geral: <span className={`menor ${menorUm}`}>{resultadoSolvenciaGeral.toFixed(2)}</span></li>
+                            <li className="descricao">Solvência Geral: <span className={` ${resultadoSolvenciaGeral < 1 ? 'vermelho' : 'azul'}`}>{resultadoSolvenciaGeral.toFixed(2)}</span></li>
                             
-                            <li className="descricao">Liquidez Corrente: <span className={`menor ${menorUm}`}>{resultadoliquidezCorrente.toFixed(2)}</span></li>
+                            <li className="descricao">Liquidez Corrente: <span className={` ${resultadoliquidezCorrente < 1 ? 'vermelho' : 'azul'}`}>{resultadoliquidezCorrente.toFixed(2)}</span></li>
                         </ul>
                     </div>
 
