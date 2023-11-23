@@ -8,7 +8,7 @@ export default function CertidaoInfo({
 }) {
     const [formData, setFormData] = useState({
         certidao: '',
-        docRecuperacao: '',
+        docRecuperacao: 'N/A',
         anexoCertidao: '',
         idEmpresa: '',
     });
@@ -16,13 +16,13 @@ export default function CertidaoInfo({
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        console.log('Estado Atual do Formulário CERTIDAO1:', formData);
+        //console.log('Estado Atual do Formulário CERTIDAO1:', formData);
     };
 
     const handleAnexoChange = (e) => {
         const file = e.target.files[0];
         setFormData({ ...formData, anexoCertidao: file });
-        console.log('Estado Atual do Formulário CERTIDAO2:', formData);
+        //console.log('Estado Atual do Formulário CERTIDAO2:', formData);
     };
 
     const handleSubmit = (e) => {
@@ -44,13 +44,8 @@ export default function CertidaoInfo({
             certidaoFalencia: anexoCertidao,
             naturezaCertidao: certidao,
             planoRecuperacao: docRecuperacao,
-            idEmpresa: idEmpresa, // Substitua pelo ID apropriado da empresa
+            idEmpresa: idEmpresa,
         };
-
-        console.log('certidaoFalencia', anexoCertidao);
-        console.log('naturezaCertidao', certidao);
-        console.log('planoRecuperacao', docRecuperacao);
-        console.log('iDEmpresa', idEmpresa);
 
         // Enviar dados para o backend
         enviarDadosParaBackend(data);
@@ -123,7 +118,7 @@ export default function CertidaoInfo({
                     
                 )}
 
-                {(formData.certidao === 'negativa' || formData.docRecuperacao === 'sim') && (
+                {(formData.certidao === 'negativa' || formData.docRecuperacao === 'sim' || formData.docRecuperacao === 'não') && (
                     <div>
                         {/* Anexar Documento de Recuperação Judicial */}
                         <h3 className="sub-title">Anexar Documento de Recuperação Judicial:</h3>
@@ -132,7 +127,7 @@ export default function CertidaoInfo({
                         </label>
                     </div>
                 )}
-                {<button type="submit">Enviar</button>}
+                {/* {<button type="submit">Enviar</button>} */}
                
                 <hr />
                 <BalancoInfo 

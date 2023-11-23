@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
 //import numeral from 'numeral';
 
-
 export default function RelatorioInfo() {
 
     const { idEmpresa } = useParams();
@@ -224,7 +223,7 @@ export default function RelatorioInfo() {
                         <h2 className="h2">Resultados</h2>
                         <ul className="listaRelatorio">
                             <li className="descricao">Requisito mínimo CCL 16,66% do valor estimado: <span className="span">{requisitoMinimoCcl.toFixed(2)}</span></li>
-                            <li className="descricao">Total de Capital de Giro estimado sobre o valor da contratação: <span className="span">{porcentagemTotalCg.toFixed(0)}%</span></li>
+                            <li className="descricao">Total de Capital de Giro estimado sobre o valor da contratação: <span className="span">{porcentagemTotalCg.toFixed(2)}%</span></li>
                             <li className="descricao">Atende aos Requisitos: <span className={atendeRequisitosCcl ? "txt-azul" : "txt-vermelho"}>{atendeRequisitosCcl ? "Sim" : "Não"}</span></li>
                         </ul>
 
@@ -246,14 +245,15 @@ export default function RelatorioInfo() {
                         <ul className="listaRelatorio">
                             <li className="descricao">Receita Bruta: <span className="span">{compromisso.receitaBruta}</span></li>
                             <li className="descricao">Compromissos Assumidos: <span className="span">{complementacao.comprAssumidos}</span></li>
-                            <li className="descricao">Divergência Percentual: <span className="span">{divergenciaPercentual.toFixed(0)}%</span></li>
+                            <li className="descricao">Divergência Percentual: <span className="span">{divergenciaPercentual.toFixed(2)}%</span></li>
                             <li className="descricao">Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%: <span className="span">{compromisso.justificativa}</span></li>
                         </ul>
                     </div>
 
                     <br></br>
-                    <button className="print btn-relatorioInfo" onClick={() => window.print()}
-                    >Imprimir</button>
+                    <button className="print btn-relatorioInfo" onClick={() => window.print()}>
+                        Imprimir
+                    </button>
 
                     <Link to='/'>
                         <button className="print btn-relatorioInfo">Voltar página inicial</button>

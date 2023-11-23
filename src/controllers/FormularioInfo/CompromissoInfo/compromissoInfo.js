@@ -23,10 +23,10 @@ export default function CompromissosAssumidosInfo({
   const [receitaBruta, setReceitaBruta] = useState("");
   const [declaracao, setDeclaracao] = useState(null);
   const [dre, setDre] = useState(null);
-  const [divergencia, setDivergencia] = useState("");
+  const [divergencia, setDivergencia] = useState(0);
   const [temJustificativa, setTemJustificativa] = useState(false);
   const [erro, setErro] = useState(null);
-  const [justificativaRecuperacao, setJustificativaRecuperacao] = useState("não");
+  const [justificativaRecuperacao, setJustificativaRecuperacao] = useState("N/A");
 
   const handleDeclaracaoUpload = (e) => {
     const file = e.target.files[0];
@@ -104,8 +104,8 @@ export default function CompromissosAssumidosInfo({
           />
         </div>
         <div className="compromissoInfo">
-          <label>Divergência Percentual:</label>
-          <span>{divergencia}%</span>
+          <label>Divergência Percentual: </label>
+          <span>{divergencia.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</span>
         </div>
         
         {temJustificativa && (
@@ -148,7 +148,7 @@ export default function CompromissosAssumidosInfo({
             onChange={handleDreUpload}
           />
         </div>
-        {<button type="submit">Enviar</button>}
+        {/* {<button type="submit">Enviar</button>} */}
 
         <hr />
         <CadastroDbIndo 

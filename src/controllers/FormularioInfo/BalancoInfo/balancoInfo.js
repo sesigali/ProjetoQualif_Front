@@ -93,7 +93,7 @@ export default function BalancoInfo({
                             onChange={handleAnexoChange} />
                     </label>
                 </div>
-                {<button type="submit">Enviar</button>}
+                {/* {<button type="submit">Enviar</button>} */}
 
                 <div>{mensagem && <p>{mensagem}</p>}</div>
                 

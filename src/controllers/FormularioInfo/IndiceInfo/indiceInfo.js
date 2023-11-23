@@ -12,16 +12,15 @@ export default function IndiceInfo({
   balancoConfLeiBalanco,
   anexoBalanco
 }) {
-  const [ativoCirculante, setAtivoCirculante] = useState("");
-  const [ativoReaLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("");
-  const [ativoTotal, setAtivoTotal] = useState("");
-  const [passivoCirculante, setPassivoCirculante] = useState("");
-  const [passivoNaoCirculante, setPassivoNaoCirculante] = useState("");
+  const [ativoCirculante, setAtivoCirculante] = useState("0");
+  const [ativoReaLongoPrazo, setAtivoRealizavelLongoPrazo] = useState("0");
+  const [ativoTotal, setAtivoTotal] = useState("0");
+  const [passivoCirculante, setPassivoCirculante] = useState("0");
+  const [passivoNaoCirculante, setPassivoNaoCirculante] = useState("0");
   const [liquidezGeral, setLiquidezGeral] = useState(null);
   const [solvenciaGeral, setSolvenciaGeral] = useState(null);
   const [liquidezCorrente, setLiquidezCorrente] = useState(null);
-  const [patrimonioLiquido, setPatrimonioLiquido] = useState("");
-  //const [ultimoCadastro, setUltimoCadastro] = useState({ valorEstimadoContrato: '' });
+  const [patrimonioLiquido, setPatrimonioLiquido] = useState("0");
   const [erro, setErro] = useState(null);
   const [formularioEnviado, setFormularioEnviado] = useState(false);
 
@@ -67,24 +66,6 @@ export default function IndiceInfo({
       }
     }
   };
-
-  //APAGAR ESSE MÉTODO, NAO ESTÁ SENDO MAIS UTILIZADO
-/*   useEffect(() => {
-    async function fetchUltimoCadastro() {
-      try {
-        const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
-        const data = response.data;
-
-        if (data) {
-          //setUltimoCadastro(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    fetchUltimoCadastro();
-  }, []); */
 
   //APAGAR ESSE MÉTODO, NAO ESTÁ SENDO MAIS UTILIZADO
   useEffect(() => {
@@ -178,7 +159,7 @@ export default function IndiceInfo({
             onChange={(e) => setPatrimonioLiquido(e.target.value)}
           />
         </div>
-        <button type="submit">Enviar</button>
+        {/* <button type="submit">Enviar</button> */}
       </form>
       <div>
         {formularioEnviado && <p>Dados enviados com sucesso!</p>}
@@ -189,8 +170,9 @@ export default function IndiceInfo({
         <p>Solvência Geral: {solvenciaGeral || "Indefinido"}</p>
         <p>Liquidez Corrente: {liquidezCorrente || "Indefinido"}</p>
       </div>
+
       <hr />
-      {/* ... prop para complementação*/}
+
       <PatrimonioLiqInfo
         idEmpresa={idEmpresa}
         valorEstimadoContrato={valorEstimadoContrato}
