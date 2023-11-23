@@ -44,13 +44,8 @@ export default function CertidaoInfo({
             certidaoFalencia: anexoCertidao,
             naturezaCertidao: certidao,
             planoRecuperacao: docRecuperacao,
-            idEmpresa: idEmpresa, // Substitua pelo ID apropriado da empresa
+            idEmpresa: idEmpresa,
         };
-
-        console.log('certidaoFalencia', anexoCertidao);
-        console.log('naturezaCertidao', certidao);
-        console.log('planoRecuperacao', docRecuperacao);
-        console.log('iDEmpresa', idEmpresa);
 
         // Enviar dados para o backend
         enviarDadosParaBackend(data);
@@ -123,7 +118,7 @@ export default function CertidaoInfo({
                     
                 )}
 
-                {(formData.certidao === 'negativa' || formData.docRecuperacao === 'sim') && (
+                {(formData.certidao === 'negativa' || formData.docRecuperacao === 'sim' || formData.docRecuperacao === 'não') && (
                     <div>
                         {/* Anexar Documento de Recuperação Judicial */}
                         <h3 className="sub-title">Anexar Documento de Recuperação Judicial:</h3>

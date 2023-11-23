@@ -55,25 +55,16 @@ export default function PatrimonioLiqInfo({
       <p>Comprovação de patrimônio líquido de 10% (dez por cento) do valor total estimado da <br/>contratação ou do item pertinente.</p>
       <div className='patrimonioInfo'>
         <label>Valor Estimado do Contrato: R$ </label>
-        <span>{valorEstimadoContrato}</span>
+        <span>{valorEstimadoContrato.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
       </div>
       <div className='patrimonioInfo'>
         <label>Patrimônio Líquido: R$ </label>
-        <span>{patrimonioLiquido}</span>
+        <span>{patrimonioLiquido.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</span>
       </div>
-{/**<div>
-        <label className='patrimonioInfo'>Patrimônio Líquido:</label>
-        <input
-          type="text"
-          name="patrimonioLiquido"
-          value={patrimonioLiquido}
-          onChange={(e) => setPatrimonioLiquido(e.target.value)}
-        />
-  </div>*/}
       {indiceResult && (
         <div>
           <p><h4>Resultados</h4></p>
-          <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo}</p>
+          <p>Requisito Mínimo de 10%: R$ {indiceResult.requisitoMinimo.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
           <p>Atende ao Requisito: <span className={indiceResult.atendeRequisitos ? "texto-azul" : "texto-vermelho"}>{indiceResult.atendeRequisitos ? "Sim" : "Não"}</span></p>
           <p>Taxa da Empresa: {indiceResult.porcentagemPatrimonio.toFixed(2)}%</p>
         </div>

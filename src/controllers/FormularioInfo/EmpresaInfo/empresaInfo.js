@@ -2,12 +2,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar/navbar/navbar";
 import Footer from "../../../components/Footer/footer";
 import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
-//import BalancoInfo from "../BalancoInfo/balancoInfo";
-//import ComplementacaoInfo from "../ComplementacaoInfo/complementacaoInfo";
-//import CompromissosAssumidosInfo from "../CompromissoInfo/compromissoInfo";
-//import IndiceInfo from "../IndiceInfo/indiceInfo";
-//import PatrimonioLiquido from "../PatrimonioLiqInfo/patrimonioLiqInfo";
-//import { Link } from "react-router-dom";
 import axios from "axios";
 import "../style/formStyle.css"
 
@@ -57,36 +51,6 @@ export default function EmpresaInfo() {
                     valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
                 />
                 <hr />
-                {/* <BalancoInfo 
-                    idEmpresa={ultimoCadastro.idEmpresa}
-                    valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
-                /> */}
-                {/* <hr /> */}
-                {/* <IndiceInfo 
-                    idEmpresa={ultimoCadastro.idEmpresa}
-                    valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato}
-                /> */}
-                {/* <hr /> */}
-                {/*<PatrimonioLiquido valorEstimadoContrato={ultimoCadastro.valorEstimadoContrato} />*/}
-                {/*<hr />
-                <ComplementacaoInfo
-                    ativoCirculante={ativoCirculante}
-                    passivoCirculante={passivoCirculante}/>
-                <CompromissosAssumidosInfo />*/}
-            {/* <br />
-                <br />
-                <div className="container-button">
-
-                    <Link to={`/relatorioInfo/${ultimoCadastro.idEmpresa}`}>
-                        <button className="save btn-empresaInfo">Salvar</button>
-                    </Link>
-
-                    <Link to="/">
-                        <button className="cancel btn-empresaInfo">Cancelar</button>
-                    </Link>
-                </div>
-                <br />
-                <br /> */}
             </div>
         </div>
     );

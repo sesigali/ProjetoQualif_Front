@@ -10,7 +10,7 @@ export default function Cadastro() {
     const [formData, setFormData] = useState({
         razaoSocial: 'Empresa.SA',
         cnpj: '10321654000198',
-        contatoEmpresa: '',
+        contatoEmpresa: 'email@email.com',
         tipoServico: 'PR03330/2023 - Manutenção',
         valorEstimadoContrato: '550000',
     });
