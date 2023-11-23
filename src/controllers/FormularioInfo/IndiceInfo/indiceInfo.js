@@ -178,7 +178,7 @@ export default function IndiceInfo({
             onChange={(e) => setPatrimonioLiquido(e.target.value)}
           />
         </div>
-        <button type="submit">Enviar</button>
+        {/* <button type="submit">Enviar</button> */}
       </form>
       <div>
         {formularioEnviado && <p>Dados enviados com sucesso!</p>}

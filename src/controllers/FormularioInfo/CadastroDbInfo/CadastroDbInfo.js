@@ -107,7 +107,6 @@ const enviarTodasAsInformacoes = async () => {
 
 //Certidao
 const handleCadastroCertidao = async () => {
-  
 
   const certidaos = {
     planoRecuperacao: docRecuperacaoCertidao,
@@ -128,7 +127,6 @@ const handleCadastroCertidao = async () => {
 
 //Balanço
 const handleCadastroBalanco = async (event) => {
-  
 
   const balancos = {
     conformidadeLei: balancoConfLeiBalanco,
@@ -149,7 +147,6 @@ const handleCadastroBalanco = async (event) => {
 //Indices
 const handleCadastroIndice = async (event) => {
   
-
   const indices = {
     ativoCirculante: ativoCirculanteIndice,
     ativoReaLongoPrazo: ativoReaLongoPrazoIndice,
@@ -173,7 +170,6 @@ const handleCadastroIndice = async (event) => {
 //Complementação
 const handleCadastroComplementacao = async (event) => {
   
-
   const complementacaos = {
     comprAssumidos: compromissosAssumidos,
     idEmpresa: idEmpresa,
@@ -192,7 +188,6 @@ const handleCadastroComplementacao = async (event) => {
 //Compromissos
 const handleCadastroCompromissos = async (event) => {
   
-
   const compromissos = {
     receitaBruta: receitaBrutaCompromisso,
     declaracaoCompr: declaracaoCompromisso,
@@ -220,12 +215,7 @@ const handleSubmit1 = async (event) => {
   setMensagem('Todas as informações foram enviadas com sucesso!');
 };
 
-
-
 //---------------------------------------------------------------------------------------------
-
-
-
   
 /*   const handleFileChange = (e, section, name) => {
     const file = e.target.files[0];
@@ -271,9 +261,6 @@ const handleSubmit1 = async (event) => {
         });
 
         console.log(`Dados de ${key} enviados com sucesso!`, response.data); */
-
-
-
       }
     } catch (error) {
       console.error('Erro ao enviar dados:', error);
@@ -282,7 +269,7 @@ const handleSubmit1 = async (event) => {
 
   return (
     <div>
-      <div>
+      {/* <div>
         <h2>Informações na Tela</h2>
         <p>ID da Empresa: {idEmpresa}</p>
         <p>Documento Recuperação Certidão: {docRecuperacaoCertidao}</p>
@@ -297,21 +284,25 @@ const handleSubmit1 = async (event) => {
         <p>compromissosAssumidos: {compromissosAssumidos}</p>
         <p>receitaBrutaCompromisso: {receitaBrutaCompromisso}</p>
         <p>justRecuperacaoCompromisso: {justRecuperacaoCompromisso}</p> 
-      </div>
+      </div> */}
 
       <br />
       <br />
       <div className="container-button">
-        <button className="save btn-empresaInfo" type="button" onClick={handleSubmit}>
+        {/* <button className="save btn-empresaInfo" type="button" onClick={handleSubmit}>
           Salvar
-        </button>
+        </button> */}
 
-        <button type="button" onClick={handleSubmit1}>Enviar Todas as Informações</button>
-        <div>{mensagem && <p>{mensagem}</p>}</div>
+        <button className="save btn-empresaInfo" type="button" onClick={handleSubmit1}>
+          Enviar Todas as Informações
+        </button>
 
         <Link to="/">
           <button className="cancel btn-empresaInfo">Cancelar</button>
         </Link>
+
+        <div>{mensagem && <p>{mensagem}</p>}</div>
+
       </div>
       <br />
       <br />

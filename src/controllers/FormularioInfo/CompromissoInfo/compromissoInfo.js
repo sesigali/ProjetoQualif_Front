@@ -26,7 +26,7 @@ export default function CompromissosAssumidosInfo({
   const [divergencia, setDivergencia] = useState("");
   const [temJustificativa, setTemJustificativa] = useState(false);
   const [erro, setErro] = useState(null);
-  const [justificativaRecuperacao, setJustificativaRecuperacao] = useState("não");
+  const [justificativaRecuperacao, setJustificativaRecuperacao] = useState("N/A");
 
   const handleDeclaracaoUpload = (e) => {
     const file = e.target.files[0];
@@ -148,7 +148,7 @@ export default function CompromissosAssumidosInfo({
             onChange={handleDreUpload}
           />
         </div>
-        {<button type="submit">Enviar</button>}
+        {/* {<button type="submit">Enviar</button>} */}
 
         <hr />
         <CadastroDbIndo 
