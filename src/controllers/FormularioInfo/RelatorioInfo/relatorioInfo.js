@@ -4,7 +4,6 @@ import Image from '../RelatorioInfo/img/Imagem.png'
 import axios from 'axios';
 import { useParams } from "react-router-dom";
 import { Link } from 'react-router-dom';
-//import numeral from 'numeral';
 
 export default function RelatorioInfo() {
 
@@ -87,16 +86,13 @@ export default function RelatorioInfo() {
         }
     };
 
-
     //***INDICE***//
     const resultadoLiquidezGeral = ((indice.ativoCirculante + indice.ativoReaLongoPrazo) / (indice.passivoCirculante + indice.passivoNaoCirculante));
 
     const resultadoSolvenciaGeral = ((indice.ativoTotal) / (indice.passivoCirculante + indice.passivoNaoCirculante));
 
     const resultadoliquidezCorrente = ((indice.ativoCirculante) / (indice.passivoCirculante));
-    //menor ou igual a um fica em vermelho o valor
-    // const menorUm = (resultadoLiquidezGeral, resultadoSolvenciaGeral, resultadoliquidezCorrente) <= (1) ? "vermelho" : "azul";
-
+    
     //***PATRIMONIO LIQUIDO***//
     // Calcula o requisito mínimo de 10% do valor estimado contrato
     const requisitoMinimo = (10 / 100) * ((empresa.valorEstimadoContrato));
@@ -123,6 +119,15 @@ export default function RelatorioInfo() {
     //valor de porcentage receita bruta menos compromissos assumidos dividido por comp. assumidos.
     const divergenciaPercentual = ((compromisso.receitaBruta - complementacao.comprAssumidos) / (complementacao.comprAssumidos)) * (100)
 
+    //TRATAMENTO VALORES NÚMERICOS PARA PONTO E VÍRGULA 
+    const formatarNumero = (numero) => {
+        // Verifica se o número é undefined ou null antes de chamar toLocaleString
+        if (numero === undefined || numero === null) {
+          return ''; // Ou qualquer valor padrão que você deseje para valores indefinidos
+        }
+        return numero.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      };
+    
     return (
         <div className="containerRelatorio">
             <div className="">
@@ -141,7 +146,7 @@ export default function RelatorioInfo() {
                             <li className="descricao">CNPJ: <span className="span">{empresa.cnpj}</span> </li>
                             <li className="descricao">Contato da Empresa:  <span className="span">{empresa.contatoEmpresa}</span></li>
                             <li className="descricao">Número do pregão - Tipo de serviço: <span className="span">{empresa.tipoServico}</span></li>
-                            <li className="descricao">Valor estimado do contrato: <span className="span">{empresa.valorEstimadoContrato}</span></li>
+                            <li className="descricao">Valor estimado do contrato: <span className="span">{formatarNumero(empresa.valorEstimadoContrato)}</span></li>
                         </ul>
                     </div>
 
@@ -172,13 +177,12 @@ export default function RelatorioInfo() {
                         <p className="subtituloRelatorio">Índices Financeiros
                         </p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Ativo Circulante: <span className="span">{indice.ativoCirculante}</span></li>
-
-                            <li className="descricao">Ativo Realizável a Longo Prazo: <span className="span"> {indice.ativoReaLongoPrazo}</span></li>
-                            <li className="descricao">Ativo Total: <span className="span"> {indice.ativoTotal}</span></li>
-                            <li className="descricao">Passivo Circulante: <span className="span"> {indice.passivoCirculante}</span></li>
-                            <li className="descricao">Passivo Não Circulante: <span className="span"> {indice.passivoNaoCirculante}</span></li>
-                            <li className="descricao">Patrimônio Líquido: <span className="span"> {indice.patrimonioLiquido}</span></li>
+                            <li className="descricao">Ativo Circulante: <span className="span">{formatarNumero(indice.ativoCirculante)}</span></li>
+                            <li className="descricao">Ativo Realizável a Longo Prazo: <span className="span"> {formatarNumero(indice.ativoReaLongoPrazo)}</span></li>
+                            <li className="descricao">Ativo Total: <span className="span"> {formatarNumero(indice.ativoTotal)}</span></li>
+                            <li className="descricao">Passivo Circulante: <span className="span"> {formatarNumero(indice.passivoCirculante)}</span></li>
+                            <li className="descricao">Passivo Não Circulante: <span className="span"> {formatarNumero(indice.passivoNaoCirculante)}</span></li>
+                            <li className="descricao">Patrimônio Líquido: <span className="span"> {formatarNumero(indice.patrimonioLiquido)}</span></li>
                         </ul>
 
                         <ul className="listaRelatorio">
@@ -197,14 +201,14 @@ export default function RelatorioInfo() {
                         </p>
                         <p>Comprovação de patrimônio líquido de 10% (dez por cento) do valor total estimado da contratação ou do item pertinente.</p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Valor Estimado do Contrato: <span className="span">{empresa.valorEstimadoContrato}</span></li>
-                            <li className="descricao">Patrimônio Líquido: <span className="span">{indice.patrimonioLiquido}</span></li>
+                            <li className="descricao">Valor Estimado do Contrato: <span className="span">{formatarNumero(empresa.valorEstimadoContrato)}</span></li>
+                            <li className="descricao">Patrimônio Líquido: <span className="span">{formatarNumero(indice.patrimonioLiquido)}</span></li>
                         </ul>
 
                         <h2 className="h2">Resultados</h2>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Requisito Mínimo de 10%: <span className="span">{requisitoMinimo.toFixed(2)}</span></li>
-                            <li className="descricao">Atende ao Requisito: <span className={atendeRequisitos ? "txt-azul" : "txt-vermelho"}>{atendeRequisitos ? "Sim" : "Não"}</span></li>
+                            <li className="descricao">Requisito Mínimo de 10%: <span className="span">{formatarNumero(requisitoMinimo)}</span></li>
+                            <li className="descricao">Atende ao Requisito: <span className={atendeRequisitos ? "azul" : "vermelho"}>{atendeRequisitos ? "Sim" : "Não"}</span></li>
                             <li className="descricao">Taxa da Empresa: <span className="span">{porcentagemPatrimonio.toFixed(2)}% </span></li>
                         </ul>
                     </div>
@@ -216,23 +220,23 @@ export default function RelatorioInfo() {
                         </p>
                         <p>Comprovação de possuir Capital Circulante Líquido (CCL) ou Capital de Giro (Ativo Circulante - Passivo Circulante) de, no  mínimo, 16,66% (dezesseis inteiros e sessenta e seis centésimos por cento) do valor estimado do contrato.</p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Capital Circulante Líquido (CCL) ou Capital de Giro: <span className="span">{capitalClCg.toFixed(2)}</span></li>
-                            <li className="descricao">Valor Estimado do Contrato: <span className="span">{empresa.valorEstimadoContrato}</span></li>
+                            <li className="descricao">Capital Circulante Líquido (CCL) ou Capital de Giro: <span className="span">{formatarNumero(capitalClCg)}</span></li>
+                            <li className="descricao">Valor Estimado do Contrato: <span className="span">{formatarNumero(empresa.valorEstimadoContrato)}</span></li>
                         </ul>
 
                         <h2 className="h2">Resultados</h2>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Requisito mínimo CCL 16,66% do valor estimado: <span className="span">{requisitoMinimoCcl.toFixed(2)}</span></li>
+                            <li className="descricao">Requisito mínimo CCL 16,66% do valor estimado: <span className="span">{formatarNumero(requisitoMinimoCcl)}</span></li>
                             <li className="descricao">Total de Capital de Giro estimado sobre o valor da contratação: <span className="span">{porcentagemTotalCg.toFixed(2)}%</span></li>
-                            <li className="descricao">Atende aos Requisitos: <span className={atendeRequisitosCcl ? "txt-azul" : "txt-vermelho"}>{atendeRequisitosCcl ? "Sim" : "Não"}</span></li>
+                            <li className="descricao">Atende aos Requisitos: <span className={atendeRequisitosCcl ? "azul" : "vermelho"}>{atendeRequisitosCcl ? "Sim" : "Não"}</span></li>
                         </ul>
 
                         <p>A Declaração de Compromissos Assumidos deve informar que 1/12 (um doze avos) dos contratos firmados pela licitante não é superior ao Patrimônio Líquido da licitante.</p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Compromissos Assumidos: <span className="span">{complementacao.comprAssumidos}</span></li>
-                            <li className="descricao">1/12 dos Compromissos Assumidos: <span className="span">{umDozeAvos.toFixed(2)}</span></li>
-                            <li className="descricao">Patrimonial Líquido: <span className="span">{indice.patrimonioLiquido}</span></li>
-                            <li className="descricao">1/12 do valor dos compromissos assumidos ultrapassa o Patrimonial Líquido: <span className={ultraPassaValor ? "txt1-vermelho" : "txt1-azul"}>{ultraPassaValor ? "Sim" : "Não"}</span></li>
+                            <li className="descricao">Compromissos Assumidos: <span className="span">{formatarNumero(complementacao.comprAssumidos)}</span></li>
+                            <li className="descricao">1/12 dos Compromissos Assumidos: <span className="span">{formatarNumero(umDozeAvos)}</span></li>
+                            <li className="descricao">Patrimonial Líquido: <span className="span">{formatarNumero(indice.patrimonioLiquido)}</span></li>
+                            <li className="descricao">1/12 do valor dos compromissos assumidos ultrapassa o Patrimonial Líquido: <span className={ultraPassaValor ? "vermelho" : "azul"}>{ultraPassaValor ? "Sim" : "Não"}</span></li>
                         </ul>
                     </div>
 
@@ -243,8 +247,8 @@ export default function RelatorioInfo() {
                         </p>
                         <p>Caso a diferença entre a receita bruta discriminada na Demonstração do Resultado do Exercício (DRE) e a declaração apresentada seja maior que 10% (dez por cento) positivo ou negativo em relação à receita bruta, o licitante deverá apresentar justificativas.</p>
                         <ul className="listaRelatorio">
-                            <li className="descricao">Receita Bruta: <span className="span">{compromisso.receitaBruta}</span></li>
-                            <li className="descricao">Compromissos Assumidos: <span className="span">{complementacao.comprAssumidos}</span></li>
+                            <li className="descricao">Receita Bruta: <span className="span">{formatarNumero(compromisso.receitaBruta)}</span></li>
+                            <li className="descricao">Compromissos Assumidos: <span className="span">{formatarNumero(complementacao.comprAssumidos)}</span></li>
                             <li className="descricao">Divergência Percentual: <span className="span">{divergenciaPercentual.toFixed(2)}%</span></li>
                             <li className="descricao">Empresa encaminhou justificativa para Receita Bruta superior ou inferior a 10%: <span className="span">{compromisso.justificativa}</span></li>
                         </ul>
