@@ -145,7 +145,7 @@ export default function ComplementacaoInfo({
             </p>
             {indiceResult.ultrapassaValor}
             {indiceResult.atendeRequisitos}
-            <p>Patrimonial Líquido: R$ {indiceResult.patrimonioLiquidoNum}
+            <p>Patrimônio Líquido: R$ {indiceResult.patrimonioLiquidoNum}
             </p>
             <p>1/12 dos Compromissos Assumidos: R$ {isNaN(umDozeAvos) ? "Indefinido" : umDozeAvos.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </p>

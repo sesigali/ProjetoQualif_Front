@@ -3,7 +3,8 @@ import Navbar from "../../../components/Navbar/navbar/navbar";
 import Footer from "../../../components/Footer/footer";
 import CertidaoInfo from "../CertidaoInfo/certidaoInfo";
 import axios from "axios";
-import "../style/formStyle.css"
+import "../style/formStyle.css";
+import "./empresaInfo.css"
 
 export default function EmpresaInfo() {
     const [ultimoCadastro, setUltimoCadastro] = useState({

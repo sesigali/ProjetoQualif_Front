@@ -63,3 +63,11 @@
     cursor: pointer;
     margin-left: 20px;
 }
+
+.background {
+    background-image: url('imagem\ \(31\).jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #f0f0f0;
+}
