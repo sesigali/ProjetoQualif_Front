@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaBars, FaTimes, FaRegPlusSquare } from 'react-icons/fa';
+import { FaBars, FaTimes, FaRegPlusSquare, FaUser } from 'react-icons/fa';
 import { AiFillHome } from "react-icons/ai";
 import '../../Navbar/navbar.css'
 import EmpresasLista from '../../../controllers/EmpresasLista/empresasLista';
+
 
 export default function Navbar() {
 
@@ -21,6 +22,7 @@ export default function Navbar() {
 
         <div className='navbar'>
             <div>
+                
                 {hamburguerIcon ? (
                     <FaBars className='btn-hamburguer' onClick={toggleSidebar} />
                 ) : (
@@ -46,6 +48,13 @@ export default function Navbar() {
             <div>
                 <Link to='/cadastro'>
                     <FaRegPlusSquare className='btn-cadastro-abrir' />
+                </Link>
+            </div>
+
+            <div >
+                <Link to='/login'>
+                    <FaUser className='login-icon'/>
+                    <h3 className='login-navbar'>Login</h3>
                 </Link>
             </div>
 
