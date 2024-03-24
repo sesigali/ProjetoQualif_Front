@@ -1,0 +1,48 @@
+.container-login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    height: 100vh;
+    background-color: #e3f4e6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.content-login{
+    gap: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    box-shadow: 0 1px 2px #0003;
+    background-color: white;
+    max-width: 350px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.label-login{
+    font-size: 18px;
+    font-weight: bolder;
+    color:#194f01;
+}
+
+.label-erro{
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+.label-registrar{
+    font-size: 14px;
+    color: #545252;
+    font-weight: 900;
+}
+
+.span-registrar2{
+    cursor: pointer;
+    text-decoration: none;
+    color: #02691f;
+}
