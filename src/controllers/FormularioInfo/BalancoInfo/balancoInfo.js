@@ -61,7 +61,8 @@ export default function BalancoInfo({
     };
 
     const enviarDadosParaBackend = async (data) => {
-        const response = await axios.post('http://localhost:8888/balanco/adicionar', data);
+        //const response = await axios.post('http://localhost:8888/balanco/adicionar', data);
+        const response = await axios.post('http://191.252.202.159:8888/balanco/adicionar', data);
         return response.data;
     };
 

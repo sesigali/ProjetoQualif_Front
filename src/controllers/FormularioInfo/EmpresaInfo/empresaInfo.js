@@ -19,7 +19,7 @@ export default function EmpresaInfo() {
     useEffect(() => {
         async function fetchUltimoCadastro() {
             try {
-                const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
+                const response = await axios.get('http://191.252.202.159:8888/empresa/ultimoCadastro');
                 const data = response.data;
 
                 if (data) {

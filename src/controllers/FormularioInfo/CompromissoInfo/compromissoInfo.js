@@ -76,7 +76,7 @@ export default function CompromissosAssumidosInfo({
 
     try {
       console.log('DataBD', data);
-      const response = await axios.post('http://localhost:8888/compromisso/adicionar', data);
+      const response = await axios.post('http://191.252.202.159:8888/compromisso/adicionar', data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

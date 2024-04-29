@@ -34,7 +34,7 @@ export default function ComplementacaoInfo({
   useEffect(() => {
     async function fetchUltimoCadastro() {
       try {
-        const response = await axios.get('http://localhost:8888/empresa/ultimoCadastro');
+        const response = await axios.get('http://191.252.202.159:8888/empresa/ultimoCadastro');
         const data = response.data;
 
         if (data) {
@@ -94,7 +94,7 @@ export default function ComplementacaoInfo({
     try {
       // Adicione a lógica para enviar os compromissos para o backend
       console.log('DaBD', compromissos);
-      const response = await axios.post('http://localhost:8888/complementacao/adicionar', compromissos);
+      const response = await axios.post('http://191.252.202.159:8888/complementacao/adicionar', compromissos);
       console.log(response.data); 
     } catch (error) {
       console.error(error);

@@ -16,7 +16,8 @@ export default function Cadastro() {
     });
 
     const RequisicaoCadastroEmpresa = (empresa) => {
-        return axios.post('http://localhost:8888/empresa/adicionar', empresa)
+        //return axios.post('http://localhost:8888/empresa/adicionar', empresa)
+        return axios.post('http://191.252.202.159:8888/empresa/adicionar', empresa)
             .then((response) => {
                 if (response.status === 200) {
                     return response.data; // Retorna a nova empresa criada

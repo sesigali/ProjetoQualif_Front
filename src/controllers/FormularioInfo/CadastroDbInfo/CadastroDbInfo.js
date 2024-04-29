@@ -53,7 +53,7 @@ const handleCadastroCertidao = async () => {
 
   try {
     // Adicione a lógica para enviar os certidaos para o backend
-    const response = await axios.post('http://localhost:8888/certidao/adicionar', certidaos);
+    const response = await axios.post('http://191.252.202.159:8888/certidao/adicionar', certidaos);
     console.log(response.data); 
   } catch (error) {
     console.error(error);
@@ -71,7 +71,7 @@ const handleCadastroBalanco = async (event) => {
 
   try {
     // Adicione a lógica para enviar os compromissos para o backend
-    const response = await axios.post('http://localhost:8888/balanco/adicionar', balancos);
+    const response = await axios.post('http://191.252.202.159:8888/balanco/adicionar', balancos);
     console.log(response.data); 
   } catch (error) {
     console.error(error);
@@ -93,7 +93,7 @@ const handleCadastroIndice = async (event) => {
 
   try {
     // Adicione a lógica para enviar os compromissos para o backend
-    const response = await axios.post('http://localhost:8888/indice/adicionar', indices);
+    const response = await axios.post('http://191.252.202.159:8888/indice/adicionar', indices);
     console.log(response.data); 
   } catch (error) {
     console.error(error);
@@ -110,7 +110,7 @@ const handleCadastroComplementacao = async (event) => {
 
   try {
     // Adicione a lógica para enviar os complementacaos para o backend
-    const response = await axios.post('http://localhost:8888/complementacao/adicionar', complementacaos);
+    const response = await axios.post('http://191.252.202.159:8888/complementacao/adicionar', complementacaos);
     console.log(response.data); 
   } catch (error) {
     console.error(error);
@@ -130,7 +130,7 @@ const handleCadastroCompromissos = async (event) => {
 
   try {
     // Adicione a lógica para enviar os compromissos para o backend
-    const response = await axios.post('http://localhost:8888/compromisso/adicionar', compromissos);
+    const response = await axios.post('http://191.252.202.159:8888/compromisso/adicionar', compromissos);
     console.log(response.data); 
   } catch (error) {
     console.error(error);

@@ -12,7 +12,8 @@ export default function EmpresasLista() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://localhost:8888/empresa/listartodas');
+                //const response = await axios.get('http://localhost:8888/empresa/listartodas');
+                const response = await axios.get('http://191.252.202.159:8888/empresa/listartodas');
                 if (response.status === 200) {
                     const data = response.data;
                     setEmpresas(data);
@@ -28,7 +29,7 @@ export default function EmpresasLista() {
 
     const handleDelete = async (idEmpresa) => {
         try {
-            const response = await axios.delete(`http://localhost:8888/empresa/excluir/${idEmpresa}`);
+            const response = await axios.delete(`http://191.252.202.159:8888/empresa/excluir/${idEmpresa}`);
             if (response.status === 200) {
                 // Atualize a lista de empresas após a exclusão
                 const updatedEmpresas = empresas.filter(empresa => empresa.idEmpresa !== idEmpresa);
