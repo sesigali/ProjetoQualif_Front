@@ -6,18 +6,21 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 //import swal from 'sweetalert2';
 
-export default function Cadastro() {
+export default function Cadastro(
+    idUsuario,
+) {
     const [formData, setFormData] = useState({
         razaoSocial: '',
         cnpj: '',
         contatoEmpresa: '',
         tipoServico: '',
         valorEstimadoContrato: '',
+        idUsuario: '',//precisa puxar aqui o usuário que está criando a empresa
     });
 
     const RequisicaoCadastroEmpresa = (empresa) => {
-        //return axios.post('http://localhost:8888/empresa/adicionar', empresa)
-        return axios.post('http://191.252.202.159:8888/empresa/adicionar', empresa)
+        return axios.post('http://localhost:8888/empresa/adicionar', empresa)
+        //return axios.post('http://191.252.202.159:8888/empresa/adicionar', empresa)
             .then((response) => {
                 if (response.status === 200) {
                     return response.data; // Retorna a nova empresa criada
@@ -38,6 +41,7 @@ export default function Cadastro() {
             contatoEmpresa: formData.contatoEmpresa,
             tipoServico: formData.tipoServico,
             valorEstimadoContrato: formData.valorEstimadoContrato,
+            idUsuario: idUsuario,
         };
 
         RequisicaoCadastroEmpresa(empresa)

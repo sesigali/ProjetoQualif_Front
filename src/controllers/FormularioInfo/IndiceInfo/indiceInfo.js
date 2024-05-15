@@ -82,7 +82,8 @@ export default function IndiceInfo({
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://191.252.202.159:8888/indice/adicionar', {
+      //const response = await axios.post('http://191.252.202.159:8888/indice/adicionar', {
+      const response = await axios.post('http://localhost:8888/indice/adicionar', {
         ativoCirculante,
         ativoReaLongoPrazo,
         ativoTotal,

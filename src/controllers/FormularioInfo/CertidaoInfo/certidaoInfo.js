@@ -7,7 +7,7 @@ export default function CertidaoInfo({
     valorEstimadoContrato
 }) {
     const [formData, setFormData] = useState({
-        certidao: '',
+        certidao: '-',
         docRecuperacao: 'N/A',
         anexoCertidao: '',
         idEmpresa: '',
@@ -52,7 +52,8 @@ export default function CertidaoInfo({
     }
 
     const enviarDadosParaBackend = (data) => {
-        axios.post('http://191.252.202.159:8888/certidao/adicionar', data) 
+        //axios.post('http://191.252.202.159:8888/certidao/adicionar', data)
+        axios.post('http://localhost:8888/certidao/adicionar', data)
             .then((response) => {
                 if (response.status === 200) {
                     return response.data; 

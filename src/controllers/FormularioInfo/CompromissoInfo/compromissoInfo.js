@@ -20,7 +20,7 @@ export default function CompromissosAssumidosInfo({
 
   compromissosAssumidos,
 }) {
-  const [receitaBruta, setReceitaBruta] = useState("");
+  const [receitaBruta, setReceitaBruta] = useState("-");
   const [declaracao, setDeclaracao] = useState(null);
   const [dre, setDre] = useState(null);
   const [divergencia, setDivergencia] = useState(0);
@@ -76,7 +76,8 @@ export default function CompromissosAssumidosInfo({
 
     try {
       console.log('DataBD', data);
-      const response = await axios.post('http://191.252.202.159:8888/compromisso/adicionar', data);
+      const response = await axios.post('http://localhost:8888/compromisso/adicionar', data);
+      //const response = await axios.post('http://191.252.202.159:8888/compromisso/adicionar', data);
       console.log(response.data);
     } catch (error) {
       console.error(error);

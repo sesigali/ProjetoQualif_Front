@@ -2,8 +2,8 @@ import { axiosUrl } from "../axiosConfig";
 
 async function cadastrarEmpresaLoader(empresaData) {
   try {
-    //const response = await axiosUrl.post("http://localhost:8888/empresa/adicionar", empresaData);
-    const response = await axiosUrl.post("http://191.252.202.159:8888/empresa/adicionar", empresaData);
+    const response = await axiosUrl.post("http://localhost:8888/empresa/adicionar", empresaData);
+    //const response = await axiosUrl.post("http://191.252.202.159:8888/empresa/adicionar", empresaData);
     if (response.status === 200) {
       return response.data; // Se cadastro bem-sucedido, retorna os dados da empresa cadastrada
     } else {
